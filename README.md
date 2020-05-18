@@ -10,8 +10,8 @@ Features implemented:
 * Specify the EC2 instance types for master and agents.
 * Masters to use a shared RDS mysql instance.
 * Ability to specify RDS instance type.
-* Not have any excess baggage like rancher install or anything else, you can create all of this after a cluster is deployed via terraform or other means.
-* Above features allow you to deploy clusters of many different sizes. 
+* Not have any excess baggage like rancher install, deploy apps; you can create these after a cluster is deployed via terraform (terraform modules?) or other means.
+* Above features allow you to deploy clusters of many different sizes. Much flexibility. 
 * You can increase the number of agent nodes and re-run `terraform apply` to deploy more workers when a cluster needs more capacity.
 
 Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf).
