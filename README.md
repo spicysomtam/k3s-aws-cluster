@@ -22,9 +22,9 @@ The k3s master nodes are designed to run pod workloads, similar to agent/worker 
 
 The kubernetes api is only available on masters so the port for this (6443) is only directed at master nodes.
 
-K3s by default uses the [treafik ingress](https://docs.traefik.io/providers/kubernetes-ingress/). You will need to setup k8s annotations for this to work; treafik works on inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 cloud load balancer even if you are hosting multiple dn names/deployments in k3s. Also the single load balancer handles the k8s api. All of this is attractive as cloud load balancers are typically expensive.
+K3s by default uses the [treafik ingress](https://docs.traefik.io/providers/kubernetes-ingress/). You will need to setup k8s annotations for this to work; treafik works on inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 cloud load balancer even if you are hosting multiple dns names/deployments in k3s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to the cost of operating the stack not to mention adding complexity.
 
-A load balancer is required even if you deploy a single master node cluster; the issue here is that the k3s certificate is set to the private IP of the host, rather than the public IP, and you will need to use `--insecure-skip-tls-verify` with `kubectl` on your client, which turns off TLS and thus is not secure.
+A load balancer is required even if you deploy a single master node cluster; the issue here is that the k3s certificate is set to the private IP of the host, rather than the public IP, and you will need to use `--insecure-skip-tls-verify` with `kubectl` on your client, which turns off TLS and thus is not secure. I am sure there is a work around for this.
 
 # Terraform
 
@@ -32,9 +32,9 @@ A load balancer is required even if you deploy a single master node cluster; the
 
 Adapt the `variables.tf`, or override them when performing the `terraform plan`.
 
-## Prequsits
+## Prequisites
 
-You already defined the EC2 key pair you want to use in aws. If not, its in the EC2 console under `Network & Security`.
+The EC2 key pair you want to use is already defined in aws. If not, it can be defined in the EC2 console under `Network & Security`.
 
 ## AWS credentials
 
@@ -50,4 +50,4 @@ You will need to ssh to one of the nodes, `sudo` to root, and then copy `~/.kube
 
 ## Deploying multiple clusters via the prefix
 
-If you are going to do this, its worth using `terraform workspaces` for each prefix, so you can track the config for each cluster.
+If you are going to do this, its worth using `terraform workspaces` for each prefix, so you can track the state for each cluster.
