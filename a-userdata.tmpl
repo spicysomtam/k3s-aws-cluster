@@ -1,0 +1,28 @@
+#! /bin/bash
+# Instructions say we need docker.
+curl https://releases.rancher.com/install-docker/18.09.sh | sh
+sudo usermod -aG docker ubuntu
+
+# Prepare kubectl for root
+sudo mkdir ~root/.kube
+sudo chmod 750 ~root/.kube
+
+# Basic install of k3s.
+curl -sfL https://get.k3s.io | sh -s - agent \
+  --server https://${host}:6443 \
+  --token ${token}
+
+sudo snap install helm --classic
+
+# Wait for k3s.yaml to appear
+while ! sudo [ -e /etc/rancher/k3s/k3s.yaml ]
+do 
+  sleep 5
+done
+
+# Allow root to have superuser over the cluster:
+sudo cp /etc/rancher/k3s/k3s.yaml ~root/.kube/config
+
+# finally how does k3s look?
+sudo kubectl get nodes
+sudo kubectl get pods --all-namespaces

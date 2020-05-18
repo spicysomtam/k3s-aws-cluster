@@ -1,0 +1,37 @@
+#! /bin/bash
+# Instructions say we need docker.
+curl https://releases.rancher.com/install-docker/18.09.sh | sh
+sudo usermod -aG docker ubuntu
+
+# Let the first master node setup mysql and k3s; other master nodes wait before setup
+[ ${inst-id} -ne 0 ] && sleep 60
+
+# Prepare kubectl for root
+sudo mkdir ~root/.kube
+sudo chmod 750 ~root/.kube
+
+# Basic install of k3s.
+curl -sfL https://get.k3s.io | sh -s - server \
+  --datastore-endpoint="mysql://admin:${pwd}@tcp(${host}:3306)/k3s" \
+  --token ${token}
+
+sudo snap install helm --classic
+
+# Wait for k3s.yaml to appear
+while ! sudo [ -e /etc/rancher/k3s/k3s.yaml ]
+do 
+  sleep 5
+done
+
+# Allow root to have superuser over the cluster:
+sudo cp /etc/rancher/k3s/k3s.yaml ~root/.kube/config
+
+# Wait for all kube-system deployments to roll out
+for d in $(sudo kubectl get deploy -n kube-system --no-headers -o name)
+do 
+  sudo kubectl -n kube-system rollout status $d
+done
+
+# finally how does k3s look?
+sudo kubectl get nodes
+sudo kubectl get pods --all-namespaces
