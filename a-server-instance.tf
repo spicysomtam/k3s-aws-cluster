@@ -1,7 +1,3 @@
-locals {
-  num_inst_subnets = length(var.inst_subnet_ids)
-}
-
 resource "aws_instance" "agent" {
   ami = data.aws_ami.ubuntu.id
   instance_type = var.a_inst_type
