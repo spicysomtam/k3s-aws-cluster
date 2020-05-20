@@ -1,6 +1,6 @@
 resource "aws_security_group" "master" {
   name        = "${var.prefix}-k3sMasterServer"
-  description = "k3s agent/worker ec2 instances"
+  description = "k3s master ec2 instances"
   vpc_id      = var.vpc_id
 
   ingress {

@@ -20,6 +20,8 @@ resource "aws_db_instance" "k3s" {
 
 resource "aws_security_group" "k3s_mysql" {
   name = "${var.prefix}-k3sRDS"
+  description = "k3s rds mysql access"
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "MYSQL"
