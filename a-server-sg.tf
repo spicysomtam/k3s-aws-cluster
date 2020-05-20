@@ -1,5 +1,7 @@
 resource "aws_security_group" "agent" {
   name        = "${var.prefix}-k3sAgentServer"
+  description = "k3s agent/worker ec2 instances"
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "SSH"
