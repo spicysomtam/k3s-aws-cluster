@@ -3,11 +3,17 @@ resource "random_password" "mysql_password" {
   special = false
 }
 
+resource "aws_db_subnet_group" "k3s" {
+  name = "${var.prefix}k3s"
+  subnet_ids = var.inst_subnet_ids
+}
+
 resource "aws_db_instance" "k3s" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
   engine_version       = "5.7.22"
+  db_subnet_group_name = aws_db_subnet_group.k3s.id
   instance_class       = var.mysql_inst_type
   name                 = "${var.prefix}k3s"
   identifier           = "${var.prefix}k3s"
