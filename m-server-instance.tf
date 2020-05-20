@@ -4,10 +4,10 @@ resource "aws_instance" "master" {
   count = var.m_num_servers
   iam_instance_profile = aws_iam_instance_profile.k3s.name
   key_name = var.key_pair
-  availability_zone = data.aws_availability_zones.available.names[count.index]
-  security_groups = [aws_security_group.master.name]
+  subnet_id = count.index < length(var.inst_subnet_ids) ? var.inst_subnet_ids[count.index] : var.inst_subnet_ids[(count.index - (count.index / local.num_inst_subnets * local.num_inst_subnets ))]
+  vpc_security_group_ids = [aws_security_group.master.id]
 
-  user_data = templatefile("m-userdata.tmpl", { 
+  user_data = templatefile("${path.module}/m-userdata.tmpl", { 
     pwd = random_password.mysql_password.result, 
     host = aws_db_instance.k3s.address, 
     inst-id = count.index,

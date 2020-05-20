@@ -3,7 +3,7 @@ resource "aws_lb_target_group" "k8s" {
   port     = 6443
   protocol = "TCP"
   target_type = "instance"
-  vpc_id = data.aws_vpc.default.id
+  vpc_id = data.aws_vpc.var.id
 
   # oddily we have to specify stickiness and then disable it to allow protocol = "TCP"!
   stickiness {
