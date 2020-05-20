@@ -28,6 +28,38 @@ A load balancer is required even if you deploy a single master node cluster; the
 
 # Terraform
 
+## Run as a module or standalone
+
+How to run as a module. 
+
+# Put everything in the default vpc and subnets
+
+If you wish to use the default vpc, you can include the block above to pass details about it through:
+```
+provider "aws" {
+  region = "eu-west-1"
+}
+
+data "aws_vpc" "default" {
+    default = true
+}
+
+data "aws_subnet_ids" "default" {
+  vpc_id = data.aws_vpc.default.id
+}
+
+module "k3s" {
+  source = "github.com/spicysomtam/k3s-aws-cluster-simple"
+  prefix = "k1"
+  vpc_id = data.aws_vpc.default.id
+  lb_subnet_ids = data.aws_subnet_ids.default.ids
+  inst_subnet_ids = data.aws_subnet_ids.default.ids
+  m_num_servers = "2"
+  a_num_servers = "2"
+  key_pair = "my-key-pair"
+}
+```
+
 ## Settings
 
 Adapt the `variables.tf`, or override them when performing the `terraform plan`.

@@ -4,10 +4,10 @@ resource "aws_instance" "agent" {
   count = var.a_num_servers
   iam_instance_profile = aws_iam_instance_profile.k3s.name
   key_name = var.key_pair
-  availability_zone = data.aws_availability_zones.available.names[count.index]
-  security_groups = [aws_security_group.agent.name]
+  subnet_id = var.inst_subnet_ids[count.index - (count.index / length(var.inst_subnet_ids) * length(var.inst_subnet_ids))]
+  security_groups = [aws_security_group.agent.id]
 
-  user_data = templatefile("a-userdata.tmpl", { 
+  user_data = templatefile("${path.module}/a-userdata.tmpl", { 
     host = aws_instance.master[0].private_ip, 
     token = random_password.k3s_cluster_secret.result
   })

@@ -21,6 +21,20 @@ variable "m_num_servers" {
   default = "2"
 }
 
+variable "vpc_id" {
+  description = "Id of vpc to deploy stack into."
+}
+
+variable "lb_subnet_ids" {
+  description = "List of subnet ids to attach the lb."
+  type        = list(string)
+}
+
+variable "inst_subnet_ids" {
+  description = "List of subnet ids to launch k3s instances."
+  type        = list(string)
+}
+
 variable "a_inst_type" {
   description = "Agent/worker server instance type."
   default     = "t3a.medium"

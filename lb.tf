@@ -2,7 +2,7 @@ resource "aws_lb" "lb" {
   name               = "${var.prefix}-k3s"
   internal           = var.lb_internal
   load_balancer_type = "network"
-  subnets = data.aws_subnet_ids.default.ids
+  subnets = var.lb_subnet_ids
 }
 
 resource "aws_lb_listener" "k8s" {

@@ -39,7 +39,7 @@ resource "aws_security_group" "master" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [data.aws_vpc.default.cidr_block]
+    cidr_blocks = [data.aws_vpc.var.cidr_block]
   }
 
   egress {
