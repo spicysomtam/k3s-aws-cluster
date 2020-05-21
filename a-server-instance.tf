@@ -4,7 +4,7 @@ resource "aws_instance" "agent" {
   count = var.a_num_servers
   iam_instance_profile = aws_iam_instance_profile.k3s.name
   key_name = var.key_pair
-  subnet_id = count.index < length(var.inst_subnet_ids) ? var.inst_subnet_ids[count.index] : var.inst_subnet_ids[(count.index - (count.index / local.num_inst_subnets * local.num_inst_subnets ))]
+  subnet_id = var.inst_subnet_ids[ count.index % length(var.inst_subnet_ids) ]
   vpc_security_group_ids = [aws_security_group.agent.id]
 
   user_data = templatefile("${path.module}/a-userdata.tmpl", { 
