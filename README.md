@@ -13,6 +13,8 @@ Features implemented:
 * Not have any excess baggage like rancher install, deploy apps; you can create these after a cluster is deployed via terraform (terraform modules?) or other means.
 * Above features allow you to deploy clusters of many different sizes. Much flexibility. 
 * You can increase the number of agent nodes and re-run `terraform apply` to deploy more workers when a cluster needs more capacity.
+* Allows public and private subnets to be defined. Public is where the load balancer and bastion go; private is where the cluster is provisioned.
+* Optional: can add a bastion host to allow ssh jumping from public to private subnets so you can get the k3s nodes (where you choose to have this config).
 
 Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf).
 
