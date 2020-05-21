@@ -3,7 +3,7 @@ resource "aws_instance" "master" {
   instance_type = var.m_inst_type
   count = var.m_num_servers
   iam_instance_profile = aws_iam_instance_profile.k3s.name
-  key_name = var.key_pair
+  key_name = var.k3s_key_pair
   subnet_id = var.inst_subnet_ids[ count.index % length(var.inst_subnet_ids) ]
   vpc_security_group_ids = [aws_security_group.master.id]
 

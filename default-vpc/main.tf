@@ -14,7 +14,7 @@ module "k3s" {
   # Use this if pulling module from github
   #source = "github.com/spicysomtam/k3s-aws-cluster-simple?ref=v1.0.x"
   source = "../"
-  prefix = "k4"
+  prefix = "k2"
   vpc_id = data.aws_vpc.default.id
 
   # Idea here is to put the load balancer on the pub subnets and the cluster/mysql on the private subnets so its secure.
@@ -29,5 +29,5 @@ module "k3s" {
   a_num_servers = "2"
 
   # ssh keypair for instances
-  key_pair = "spicysomtam-aws4"
+  k3s_key_pair = "spicysomtam-aws4"
 }

@@ -1,10 +1,4 @@
 
-/*
-output "api_url" {
-  value = "https://${var.rancher_dns_name}"
-}
-*/
-
 output "masters_public_ips" {
   value = [aws_instance.master.*.public_ip]
 }
@@ -13,7 +7,7 @@ output "agents_public_ips" {
   value = [aws_instance.agent.*.public_ip]
 }
 output "server_ssh_key" {
-  value = var.key_pair
+  value = var.k3s_key_pair
 }
 
 output "lb_dns_name" {

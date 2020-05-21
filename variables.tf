@@ -45,6 +45,16 @@ variable "a_num_servers" {
   default = "2"
 }
 
+variable "b_inst_type" {
+  description = "Bastion server instance type."
+  default     = "t3a.micro"
+}
+
+variable "bastion_enabled" {
+  description = "Whether bastion server is created (0 or 1)."
+  default     = "0"
+}
+
 variable "lb_internal" {
   description = "Whether lb is internal."
   default = false
@@ -64,15 +74,27 @@ variable "https_ingress_cidrs" {
   type        = list(string)
 }
 
-# Allowing access from everything is probably not secure; so please override this to your requirement.
-variable "ssh_ingress_cidrs" {
-  description = "External ips allowed access to all servers via ssh."
+# Allowing k3s cluster access from everything is probably not secure; so please override this to your requirement.
+variable "k3s_ssh_ingress_cidrs" {
+  description = "External ips allowed access to all k3s servers via ssh."
   default     = ["0.0.0.0/0"]
   type        = list(string)
 }
 
-variable "key_pair" {
+# Allowing bastion access from everything is probably not secure; so please override this to your requirement.
+variable "b_ssh_ingress_cidrs" {
+  description = "External ips allowed access to the bastion via ssh."
+  default     = ["0.0.0.0/0"]
+  type        = list(string)
+}
+
+variable "k3s_key_pair" {
   description = "aws key pair to access all k3s servers."
+  default = "my-keypair"
+}
+
+variable "b_key_pair" {
+  description = "aws key pair to access bastion."
   default = "my-keypair"
 }
 

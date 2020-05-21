@@ -8,7 +8,7 @@ resource "aws_security_group" "master" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.ssh_ingress_cidrs
+    cidr_blocks = var.k3s_ssh_ingress_cidrs
   }
 
   # treafik ingress controller tends to bounce http to https.

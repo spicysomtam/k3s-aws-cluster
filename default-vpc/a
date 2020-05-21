@@ -2,8 +2,8 @@
 The refreshed state will be used to calculate this plan, but will not be
 persisted to local or remote state storage.
 [0m
-[0m[1mmodule.k3s.data.aws_ami.ubuntu: Refreshing state...[0m
 [0m[1mdata.aws_vpc.default: Refreshing state...[0m
+[0m[1mmodule.k3s.data.aws_ami.ubuntu: Refreshing state...[0m
 [0m[1mdata.aws_subnet_ids.default: Refreshing state...[0m
 [0m[1mmodule.k3s.data.aws_vpc.var: Refreshing state...[0m
 
@@ -35,7 +35,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mengine_version[0m[0m                        = "5.7.22"
       [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m                        = (known after apply)
       [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
-      [32m+[0m [0m[1m[0midentifier[0m[0m                            = "k4k3s"
+      [32m+[0m [0m[1m[0midentifier[0m[0m                            = "k2k3s"
       [32m+[0m [0m[1m[0midentifier_prefix[0m[0m                     = (known after apply)
       [32m+[0m [0m[1m[0minstance_class[0m[0m                        = "db.t2.micro"
       [32m+[0m [0m[1m[0mkms_key_id[0m[0m                            = (known after apply)
@@ -44,7 +44,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mmonitoring_interval[0m[0m                   = 0
       [32m+[0m [0m[1m[0mmonitoring_role_arn[0m[0m                   = (known after apply)
       [32m+[0m [0m[1m[0mmulti_az[0m[0m                              = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m                                  = "k4k3s"
+      [32m+[0m [0m[1m[0mname[0m[0m                                  = "k2k3s"
       [32m+[0m [0m[1m[0moption_group_name[0m[0m                     = (known after apply)
       [32m+[0m [0m[1m[0mparameter_group_name[0m[0m                  = "default.mysql5.7"
       [32m+[0m [0m[1m[0mpassword[0m[0m                              = (sensitive value)
@@ -68,7 +68,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mdescription[0m[0m = "Managed by Terraform"
       [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m        = "k4k3s"
+      [32m+[0m [0m[1m[0mname[0m[0m        = "k2k3s"
       [32m+[0m [0m[1m[0mname_prefix[0m[0m = (known after apply)
       [32m+[0m [0m[1m[0msubnet_ids[0m[0m  = [
           [32m+[0m [0m"subnet-9c57dcc6",
@@ -82,9 +82,9 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mcreate_date[0m[0m = (known after apply)
       [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m        = "k4-k3sServer"
+      [32m+[0m [0m[1m[0mname[0m[0m        = "k2-k3sServer"
       [32m+[0m [0m[1m[0mpath[0m[0m        = "/"
-      [32m+[0m [0m[1m[0mrole[0m[0m        = "k4-k3sServer"
+      [32m+[0m [0m[1m[0mrole[0m[0m        = "k2-k3sServer"
       [32m+[0m [0m[1m[0mroles[0m[0m       = (known after apply)
       [32m+[0m [0m[1m[0munique_id[0m[0m   = (known after apply)
     }
@@ -93,7 +93,7 @@ Terraform will perform the following actions:
 [0m  [32m+[0m[0m resource "aws_iam_policy" "k3s" {
       [32m+[0m [0m[1m[0marn[0m[0m    = (known after apply)
       [32m+[0m [0m[1m[0mid[0m[0m     = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m   = "k4-k3sServer"
+      [32m+[0m [0m[1m[0mname[0m[0m   = "k2-k3sServer"
       [32m+[0m [0m[1m[0mpath[0m[0m   = "/"
       [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
             {
@@ -195,7 +195,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
       [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
       [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
-      [32m+[0m [0m[1m[0mname[0m[0m                  = "k4-k3sServer"
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "k2-k3sServer"
       [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
       [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
     }
@@ -204,7 +204,7 @@ Terraform will perform the following actions:
 [0m  [32m+[0m[0m resource "aws_iam_role_policy_attachment" "k3s" {
       [32m+[0m [0m[1m[0mid[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mpolicy_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mrole[0m[0m       = "k4-k3sServer"
+      [32m+[0m [0m[1m[0mrole[0m[0m       = "k2-k3sServer"
     }
 
 [1m  # module.k3s.aws_instance.agent[0][0m will be created[0m[0m
@@ -217,7 +217,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
       [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k2-k3sServer"
       [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
       [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
@@ -237,7 +237,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
       [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-9c57dcc6"
       [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent0"
+          [32m+[0m [0m"Name" = "k2-k3sAgent0"
         }
       [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
       [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
@@ -296,7 +296,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
       [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k2-k3sServer"
       [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
       [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
@@ -316,7 +316,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
       [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-d71b52b1"
       [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent1"
+          [32m+[0m [0m"Name" = "k2-k3sAgent1"
         }
       [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
       [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
@@ -365,8 +365,8 @@ Terraform will perform the following actions:
         }
     }
 
-[1m  # module.k3s.aws_instance.agent[2][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
+[1m  # module.k3s.aws_instance.bastion[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_instance" "bastion" {
       [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
       [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
       [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
@@ -375,168 +375,9 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
       [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
       [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
       [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-e7b4edaf"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent2"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[3][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-9c57dcc6"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent3"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[4][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.micro"
       [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
       [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
@@ -553,405 +394,9 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
       [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-d71b52b1"
       [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent4"
+          [32m+[0m [0m"Name" = "k2-k3sBastion0"
         }
       [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[5][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-e7b4edaf"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent5"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[6][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-9c57dcc6"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent6"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[7][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-d71b52b1"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent7"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[8][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-e7b4edaf"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent8"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
-
-      [32m+[0m [0mebs_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-
-      [32m+[0m [0mephemeral_block_device {
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
-          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
-          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
-        }
-
-      [32m+[0m [0mmetadata_options {
-          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
-        }
-
-      [32m+[0m [0mnetwork_interface {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
-          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
-        }
-
-      [32m+[0m [0mroot_block_device {
-          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
-          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
-          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
-          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
-        }
-    }
-
-[1m  # module.k3s.aws_instance.agent[9][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_instance" "agent" {
-      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
-      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
-      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
-      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
-      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
-      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
-      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
-      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
-      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
-      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
-      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
-      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
-      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
-      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
-      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
-      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
-      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-9c57dcc6"
-      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sAgent9"
-        }
-      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
       [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
       [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
 
@@ -1007,7 +452,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
       [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
       [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
-      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k4-k3sServer"
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k2-k3sServer"
       [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
       [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
@@ -1027,7 +472,86 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
       [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-9c57dcc6"
       [32m+[0m [0m[1m[0mtags[0m[0m                         = {
-          [32m+[0m [0m"Name" = "k4-k3sMaster0"
+          [32m+[0m [0m"Name" = "k2-k3sMaster0"
+        }
+      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mephemeral_block_device {
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
+          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mmetadata_options {
+          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
+        }
+
+      [32m+[0m [0mnetwork_interface {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
+          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # module.k3s.aws_instance.master[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_instance" "master" {
+      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-0964eb2dc8b836eb6"
+      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
+      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m         = "k2-k3sServer"
+      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t3a.medium"
+      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = "spicysomtam-aws4"
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = "subnet-d71b52b1"
+      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
+          [32m+[0m [0m"Name" = "k2-k3sMaster1"
         }
       [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
       [32m+[0m [0m[1m[0muser_data[0m[0m                    = (known after apply)
@@ -1087,7 +611,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0minternal[0m[0m                         = false
       [32m+[0m [0m[1m[0mip_address_type[0m[0m                  = (known after apply)
       [32m+[0m [0m[1m[0mload_balancer_type[0m[0m               = "network"
-      [32m+[0m [0m[1m[0mname[0m[0m                             = "k4-k3s"
+      [32m+[0m [0m[1m[0mname[0m[0m                             = "k2-k3s"
       [32m+[0m [0m[1m[0msecurity_groups[0m[0m                  = (known after apply)
       [32m+[0m [0m[1m[0msubnets[0m[0m                          = [
           [32m+[0m [0m"subnet-9c57dcc6",
@@ -1159,7 +683,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
       [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
       [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m                               = "k4-k3s-tcp-80"
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "k2-k3s-tcp-80"
       [32m+[0m [0m[1m[0mport[0m[0m                               = 80
       [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "TCP"
       [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
@@ -1194,7 +718,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
       [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
       [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m                               = "k4-k3s-tcp-443"
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "k2-k3s-tcp-443"
       [32m+[0m [0m[1m[0mport[0m[0m                               = 443
       [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "TCP"
       [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
@@ -1229,7 +753,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
       [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
       [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
-      [32m+[0m [0m[1m[0mname[0m[0m                               = "k4-k3s-tcp-6443"
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "k2-k3s-tcp-6443"
       [32m+[0m [0m[1m[0mport[0m[0m                               = 6443
       [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "TCP"
       [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
@@ -1272,71 +796,15 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
     }
 
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[2][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[3][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[4][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[5][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[6][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[7][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[8][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.http_a[9][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 80
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
 [1m  # module.k3s.aws_lb_target_group_attachment.http_m[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_m" {
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m             = 80
+      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
+    }
+
+[1m  # module.k3s.aws_lb_target_group_attachment.http_m[1][0m will be created[0m[0m
 [0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "http_m" {
       [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0mport[0m[0m             = 80
@@ -1360,70 +828,6 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
     }
 
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[2][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[3][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[4][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[5][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[6][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[7][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[8][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
-[1m  # module.k3s.aws_lb_target_group_attachment.https_a[9][0m will be created[0m[0m
-[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_a" {
-      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
-      [32m+[0m [0m[1m[0mport[0m[0m             = 443
-      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
-      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
-    }
-
 [1m  # module.k3s.aws_lb_target_group_attachment.https_m[0][0m will be created[0m[0m
 [0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_m" {
       [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
@@ -1432,7 +836,23 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
     }
 
+[1m  # module.k3s.aws_lb_target_group_attachment.https_m[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "https_m" {
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m             = 443
+      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
+    }
+
 [1m  # module.k3s.aws_lb_target_group_attachment.k8s_m[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "k8s_m" {
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m             = 6443
+      [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_id[0m[0m        = (known after apply)
+    }
+
+[1m  # module.k3s.aws_lb_target_group_attachment.k8s_m[1][0m will be created[0m[0m
 [0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "k8s_m" {
       [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0mport[0m[0m             = 6443
@@ -1514,11 +934,68 @@ Terraform will perform the following actions:
               [32m+[0m [0mto_port          = 0
             },
         ]
-      [32m+[0m [0m[1m[0mname[0m[0m                   = "k4-k3sAgentServer"
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "k2-k3sAgentServer"
       [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
       [32m+[0m [0m[1m[0mtags[0m[0m                   = {
-          [32m+[0m [0m"Name" = "k4-AgentServer"
+          [32m+[0m [0m"Name" = "k2-AgentServer"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-cf332fa9"
+    }
+
+[1m  # module.k3s.aws_security_group.bastion[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "bastion" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "k3s bastion ec2 instance"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = "SSH"
+              [32m+[0m [0mfrom_port        = 22
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 22
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"172.31.0.0/16",
+                ]
+              [32m+[0m [0mdescription      = "Full vpc access"
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "k2-k3sBastionServer"
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "k2-BastionServer"
         }
       [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-cf332fa9"
     }
@@ -1542,11 +1019,11 @@ Terraform will perform the following actions:
               [32m+[0m [0mto_port          = 3306
             },
         ]
-      [32m+[0m [0m[1m[0mname[0m[0m                   = "k4-k3sRDS"
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "k2-k3sRDS"
       [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
       [32m+[0m [0m[1m[0mtags[0m[0m                   = {
-          [32m+[0m [0m"Name" = "k4-k3sRDS"
+          [32m+[0m [0m"Name" = "k2-k3sRDS"
         }
       [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-cf332fa9"
     }
@@ -1638,11 +1115,11 @@ Terraform will perform the following actions:
               [32m+[0m [0mto_port          = 0
             },
         ]
-      [32m+[0m [0m[1m[0mname[0m[0m                   = "k4-k3sMasterServer"
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "k2-k3sMasterServer"
       [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
       [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
       [32m+[0m [0m[1m[0mtags[0m[0m                   = {
-          [32m+[0m [0m"Name" = "k4-MasterServer"
+          [32m+[0m [0m"Name" = "k2-MasterServer"
         }
       [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-cf332fa9"
     }
@@ -1677,7 +1154,7 @@ Terraform will perform the following actions:
       [32m+[0m [0m[1m[0mupper[0m[0m       = true
     }
 
-[0m[1mPlan:[0m 52 to add, 0 to change, 0 to destroy.[0m
+[0m[1mPlan:[0m 34 to add, 0 to change, 0 to destroy.[0m
 
 ------------------------------------------------------------------------
 

@@ -36,9 +36,15 @@ How to run as a module.
 
 If you wish to use the aws account default vpc and subnets; see [example](./default-vpc/main.tf). You can include the block above the module to pass it through to the module.
 
+### New vpc, public and private subnets, bastion host
+
+With this, we create a new vpc, and create all the infrastructure in this. The k3s cluster lives on 3 private subnets. Load balancer lives on 3 public subnets. Bastion lives on public subnets and provides a way to access the k3s hosts remotely via ssh.
+
+See [example](./new-vpc-priv-pub-subnets-bastion/main.tf).
+
 ## Settings
 
-If not usign as a module, adapt the `variables.tf`, or override them when performing the `terraform plan` or `terraform apply`.
+If not used as a module, adapt the `variables.tf`, or override them when performing the `terraform plan` or `terraform apply`.
 
 ## Prequisites
 
@@ -55,3 +61,7 @@ You will need to ssh to one of the nodes, `sudo` to root, and then copy `~/.kube
 ## Deploying multiple clusters via the prefix
 
 If you are going to do this, its worth using `terraform workspaces` for each prefix, so you can track the state for each cluster.
+
+## Bastion host
+
+You can enable a bastion (jump) host if the k3s nodes are put on private subnets to allow you to jump to them from a public subnet. See `variables.tf`.
