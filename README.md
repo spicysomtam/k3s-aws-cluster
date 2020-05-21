@@ -32,13 +32,13 @@ A load balancer is required even if you deploy a single master node cluster; the
 
 How to run as a module. 
 
-# Put everything in the default vpc and subnets
+### Put everything in the default vpc and subnets
 
 If you wish to use the aws account default vpc and subnets; see [example](./default-vpc/main.tf). You can include the block above the module to pass it through to the module.
 
 ## Settings
 
-Adapt the `variables.tf`, or override them when performing the `terraform plan`.
+If not usign as a module, adapt the `variables.tf`, or override them when performing the `terraform plan` or `terraform apply`.
 
 ## Prequisites
 
@@ -47,10 +47,6 @@ The EC2 key pair you want to use is already defined in aws. If not, it can be de
 ## AWS credentials
 
 I have refrained from hard coding these in the terraform as its bad practice. These should be defined in the shell by [environment variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html), etc.
-
-## Installs into default vpc
-
-To keep things simple, the deploys are deployed into the default vpc. If you require a specific vpc, consider adapting vpc.tf, and adding a variable for it.
 
 ## Kube config
 
