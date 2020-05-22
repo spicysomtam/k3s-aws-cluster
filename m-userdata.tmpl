@@ -32,6 +32,15 @@ do
   sudo kubectl -n kube-system rollout status $d
 done
 
+# Display kubeconfig to console.
+[ ${inst-id} -eq 0 -a ${kubeconfig-console} -eq 1 ] && {
+  echo ===================================================================== > /dev/console
+  echo Cluster kubeconfig: > /dev/console
+  echo ===================================================================== > /dev/console
+  cat ~root/.kube/config > /dev/console
+  echo ===================================================================== > /dev/console
+}
+
 # finally how does k3s look?
 sudo kubectl get nodes
 sudo kubectl get pods --all-namespaces

@@ -67,3 +67,45 @@ If you are going to do this, its worth using `terraform workspaces` for each pre
 ## Bastion host
 
 You can enable a bastion (jump) host if the k3s nodes are put on private subnets to allow you to jump to them from a public subnet. See `variables.tf`.
+
+If you want to be really clever you could install OpenVPN and then vpn into the vpc networks.
+
+## Getting the cluster kubeconfig
+
+Once the cluster is built, you will need to get the kubeconfig to start using it.
+
+Previously you would have had to ssh on to one the k3s nodes and get it from root ~/.kube/config.
+
+Once you have it, edit the server url in the kubeconfig and replace 127.0.0.1 with the load balancer dns name.
+
+### kubeconfig can be displayed to master0 console
+
+There is the terraform varible `kubeconfig_on_console` to tell the kubeconfig to be displayed on the console of master0. Default is `0` meaning don't display to the console; `1` means display to the console.
+
+Then you can use the aws cli to get the kubeconfig:
+```
+$ aws ec2 get-console-output --instance-id <id>  --output text --latest
+=====================================================================
+Cluster kubeconfig:
+=====================================================================
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJWekNCL3FBREFnRUNBZ0VBTUFvR0NDcUdTTTQ5QkFNQ01DTXhJVEFmQmdOVkJBTU1HR3N6Y3kxelpYSjIKWlhJdFkyRkFNVFU1TURFM05qVTFNREFlRncweU1EQTFNakl4T1RReU16QmFGdzB6TURBMU1qQXhPVFF5TXpCYQpNQ014SVRBZkJnTlZCQU1NR0dzemN5MXpaWEoyWlhJdFkyRkFNVFU1TURFM05qVTFNREJaTUJNR0J5cUdTTTQ5CkFnRUdDQ3FHU000OUF3RUhBMElBQkUreGx2a3p0emRvRE1SdkVIZEhzUkpKc2RTZHVjQnRwbndLYituYUNzeXYKRVZvQlFVL1p5ZGl0bUR5QUxWbnhtbUUxam0vVnREOXpBczNkeVlySll1YWpJekFoTUE0R0ExVWREd0VCL3dRRQpBd0lDcERBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFEVTFVVVFZT216CjJubGlSY0dSQndaYTNXZFQyUVVpY1BGaDNrK0xyTm5WR1FJZ0h5cThKYXZ5ZVBMZU05THNwcUdEbGVQaXZ0Z2oKaXJSYlRmb3BxMDZVdENZPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://127.0.0.1:6443
+  name: default
+contexts:
+- context:
+    cluster: default
+    user: default
+  name: default
+current-context: default
+kind: Config
+preferences: {}
+users:
+- name: default
+  user:
+    password: 3cb5bc0247fbf81267a1053ea8eefed4
+    username: admin
+=====================================================================
+```

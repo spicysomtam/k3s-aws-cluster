@@ -50,6 +50,11 @@ variable "bastion_enabled" {
   default     = "0"
 }
 
+variable "kubeconfig_on_console" {
+  description = "Whether kubeconfig should be sent to master0 console."
+  default     = "0"
+}
+
 variable "lb_internal" {
   description = "Whether lb is internal."
   default = false

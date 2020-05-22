@@ -11,6 +11,7 @@ resource "aws_instance" "master" {
     pwd = random_password.mysql_password.result, 
     host = aws_db_instance.k3s.address, 
     inst-id = count.index,
+    kubeconfig-console = var.kubeconfig_on_console,
     token = random_password.k3s_cluster_secret.result
   })
   depends_on = [ aws_db_instance.k3s, aws_security_group.k3s_mysql ]
