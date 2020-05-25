@@ -16,6 +16,10 @@ resource "aws_instance" "master" {
   })
   depends_on = [ aws_db_instance.k3s, aws_security_group.k3s_mysql ]
 
+  lifecycle {
+    ignore_changes = all
+  }
+
   tags = {
     Name = "${var.prefix}-k3sMaster${count.index}"
   }
