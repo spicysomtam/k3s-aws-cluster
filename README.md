@@ -70,6 +70,16 @@ You can enable a bastion (jump) host if the k3s nodes are put on private subnets
 
 If you want to be really clever you could install OpenVPN and then vpn into the vpc networks.
 
+## Reducing number of nodes
+
+It is wise to use `kubectl drain`  to remove a agent or master from the cluster before reducing their count via terraform.
+
+## Masters prevented from recreation on resource changes
+
+This can be quite dangerous; basically recreating the masters. Thus this is blocked. You should always run a terraform plan before making changes to see what the impact is.
+
+However you are not prevented from increasing or decreasing the number of masters. Care must be take on decreasing the number; that is remove masters from the cluster using say `kubectl drain` in advance of reducing the number via terraform. That is remove the nodes cleanly.
+
 ## Getting the cluster kubeconfig
 
 Once the cluster is built, you will need to get the kubeconfig to start using it.
