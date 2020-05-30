@@ -6,13 +6,14 @@ resource "aws_lb" "lb" {
 }
 
 resource "aws_lb_listener" "k8s" {
+  count             = var.api_on_lb ? 1 : 0
   load_balancer_arn = aws_lb.lb.arn
   port              = "6443"
   protocol          = "TCP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.k8s.arn
+    target_group_arn = aws_lb_target_group.k8s[0].arn
   }
 }
 

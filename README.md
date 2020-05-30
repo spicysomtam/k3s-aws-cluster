@@ -15,6 +15,7 @@ Features implemented:
 * You can increase the number of agent nodes and re-run `terraform apply` to deploy more workers when a cluster needs more capacity.
 * Allows public and private subnets to be defined. Public is where the load balancer and bastion go; private is where the cluster is provisioned.
 * Optional: can add a bastion host to allow ssh jumping from public to private subnets so you can get the k3s nodes (where you choose to have this config).
+* Ability to turn off port 6443 (kubernetes api) on the load balancer (see below for details).
 
 Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf).
 
@@ -44,6 +45,10 @@ With this, we create a new vpc, and create all the infrastructure in this. The k
 
 See [example](./new-vpc-priv-pub-subnets-bastion/main.tf).
 
+### No k8s api on external load balancer and enabled on an internal load balancer
+
+See section [Disable kubernetes api on load balancer](#Disable-kubernetes-api-on-load-balancer) for details. This is the same as stack 
+[New vpc, public and private subnets, bastion host](#New-vpc,-public-and-private-subnets,-bastion-host) with a internal load balancer added that just exposes the k8s api internally. See [example](./no-api-on-ext-lb-plus-int-lb-for-api/main.tf).
 ## Settings
 
 If not used as a module, adapt the `variables.tf`, or override them when performing the `terraform plan` or `terraform apply`.
@@ -84,9 +89,9 @@ However you are not prevented from increasing or decreasing the number of master
 
 Once the cluster is built, you will need to get the kubeconfig to start using it.
 
-Previously you would have had to ssh on to one the k3s nodes and get it from root ~/.kube/config.
+Previously you would have had to ssh on to one the k3s nodes and get it from root ~/.kube/config, which may be a problem if you don't have a bastion host. Now you can get it from master0 console; see the next sub section.
 
-Once you have it, edit the server url in the kubeconfig and replace 127.0.0.1 with the load balancer dns name.
+Once you have the kubeconfig, edit the server url in the kubeconfig and replace 127.0.0.1 with the load balancer dns name.
 
 ### kubeconfig can be displayed to master0 console
 
@@ -119,3 +124,17 @@ users:
     username: admin
 =====================================================================
 ```
+## Disable kubernetes api on load balancer
+
+There may be situations where the kubernetes api should not be available on the load balancer, especially if its is internet facing.
+
+Thus I added option `api_on_lb` to turn it off. Set this to `true` (default) or `false`.
+
+You could argue that I could also create another internal load balancer for the api, and add loads of options for this within this stack. However I think this is bloating the stack and it would be difficult to cater for the different configurations people might want. Thus you can easily create an internal load balancer outside the stack and pass references from this stack to the internal load balancer stack. 
+
+I would recommend using the main load balancer for service ingress and just use the internal load balancer for the k8s api; the reason is it will make you ingress simpler to configure (only need to cater for ingress on the main load balancer).
+
+Thus I just included an option to turn off the k8s api on the load balancer.
+
+I have included an example of turning off the load balancer on an external load balancer, and creating an internal load balancer for the api in the directory  `no-api-on-ext-lb-plus-int-lb-for-api`.
+

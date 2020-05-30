@@ -55,6 +55,12 @@ variable "kubeconfig_on_console" {
   default     = "0"
 }
 
+variable "api_on_lb" {
+  description = "Whether k8s api should be exposed on the load balancer."
+  type = bool
+  default = true
+}
+
 variable "lb_internal" {
   description = "Whether lb is internal."
   default = false

@@ -1,4 +1,3 @@
-
 locals {
   private_subnet_cidrs = ["${var.vpc_cidr_prefix}.48.0/20", "${var.vpc_cidr_prefix}.64.0/20", "${var.vpc_cidr_prefix}.80.0/20"]
   public_subnet_cidrs  = ["${var.vpc_cidr_prefix}.0.0/20", "${var.vpc_cidr_prefix}.16.0/20", "${var.vpc_cidr_prefix}.32.0/20"]
@@ -55,8 +54,15 @@ module "k3s" {
   # ssh keypair for instances
   k3s_key_pair = "spicysomtam-aws4"
 
+  # enable bastion so we can get to hosts in priv subnets
   bastion_enabled = "1"
   b_key_pair = "spicysomtam-aws4"
+
+  # no api on ext lb
+  api_on_lb = false
+
+  # An example of restricting the k8s api to a vpn or management network range
+  api_ingress_cidrs = [ "18.0.0.0/16" ]
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
   kubeconfig_on_console = "1"
