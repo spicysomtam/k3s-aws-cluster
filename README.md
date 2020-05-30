@@ -48,7 +48,7 @@ See [example](./new-vpc-priv-pub-subnets-bastion/main.tf).
 ### No k8s api on external load balancer and enabled on an internal load balancer
 
 See section [Disable kubernetes api on load balancer](#Disable-kubernetes-api-on-load-balancer) for details. This is the same as stack 
-[New vpc, public and private subnets, bastion host](#New-vpc-public-and-private-subnets-and-bastion-host) with a internal load balancer added that just exposes the k8s api internally. See [example](./no-api-on-ext-lb-plus-int-lb-for-api/main.tf).
+[New vpc public and private subnets and bastion host](#New-vpc-public-and-private-subnets-and-bastion-host) with a internal load balancer added that just exposes the k8s api internally. See [example](./no-api-on-ext-lb-plus-int-lb-for-api/main.tf).
 ## Settings
 
 If not used as a module, adapt the `variables.tf`, or override them when performing the `terraform plan` or `terraform apply`.
