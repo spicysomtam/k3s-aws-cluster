@@ -3,6 +3,7 @@ resource "aws_lb" "lb" {
   internal           = var.lb_internal
   load_balancer_type = "network"
   subnets = var.lb_subnet_ids
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "k8s" {

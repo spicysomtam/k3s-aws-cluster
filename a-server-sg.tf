@@ -43,7 +43,10 @@ resource "aws_security_group" "agent" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "${var.prefix}-AgentServer"
-  }
+  tags = merge(
+    {
+      Name = "${var.prefix}-AgentServer"
+    },
+    var.tags,
+  )
 }

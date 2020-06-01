@@ -21,6 +21,7 @@ resource "aws_iam_role" "k3s" {
   ]
 }
 EOF
+  tags = var.tags
 }
 
 resource "aws_iam_policy" "k3s" {

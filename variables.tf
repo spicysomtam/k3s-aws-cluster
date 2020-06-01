@@ -111,3 +111,9 @@ variable "mysql_inst_type" {
 variable "mysql_username" {
   default = "admin"
 }
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+}
+

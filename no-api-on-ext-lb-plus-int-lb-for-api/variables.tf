@@ -33,3 +33,10 @@ variable "api_ingress_cidrs" {
   default     = ["0.0.0.0/0"]
   type        = list(string)
 }
+
+variable "tags" {
+  default = {
+    Terraform = "true"
+    Environment = "k3"
+  }
+}

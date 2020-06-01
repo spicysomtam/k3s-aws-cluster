@@ -27,10 +27,7 @@ module "vpc" {
 
   enable_vpn_gateway = true
 
-  tags = {
-    Terraform = "true"
-    Environment = "k3"
-  }
+  tags = var.tags
 }
 
 module "k3s" {
@@ -66,4 +63,6 @@ module "k3s" {
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
   kubeconfig_on_console = "1"
+
+  tags = var.tags
 }

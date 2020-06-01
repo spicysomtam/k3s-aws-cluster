@@ -13,7 +13,10 @@ resource "aws_instance" "agent" {
   })
   depends_on = [ aws_instance.master ]
 
-  tags = {
-    Name = "${var.prefix}-k3sAgent${count.index}"
-  }
+  tags = merge(
+    {
+      Name = "${var.prefix}-k3sAgent${count.index}"
+    },
+    var.tags,
+  )
 }

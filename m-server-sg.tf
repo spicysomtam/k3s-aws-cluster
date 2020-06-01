@@ -51,7 +51,10 @@ resource "aws_security_group" "master" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "${var.prefix}-MasterServer"
-  }
+  tags = merge(
+    {
+      Name = "${var.prefix}-MasterServer"
+    },
+    var.tags
+  )
 }

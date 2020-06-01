@@ -10,6 +10,8 @@ resource "aws_lb_target_group" "https" {
       type = "lb_cookie"
       enabled = false
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group_attachment" "https_m" {

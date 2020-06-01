@@ -20,7 +20,10 @@ resource "aws_instance" "master" {
     ignore_changes = all
   }
 
-  tags = {
-    Name = "${var.prefix}-k3sMaster${count.index}"
-  }
+  tags = merge(
+    {
+      Name = "${var.prefix}-k3sMaster${count.index}"
+    },
+    var.tags,
+  )
 }

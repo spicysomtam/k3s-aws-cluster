@@ -33,4 +33,8 @@ module "k3s" {
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
   kubeconfig_on_console = "1"
+
+  tags = {
+    Terraform = "true"
+  }
 }

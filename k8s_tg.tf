@@ -11,6 +11,8 @@ resource "aws_lb_target_group" "k8s" {
       type = "lb_cookie"
       enabled = false
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group_attachment" "k8s_m" {

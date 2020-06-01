@@ -6,6 +6,7 @@ resource "random_password" "mysql_password" {
 resource "aws_db_subnet_group" "k3s" {
   name = "${var.prefix}k3s"
   subnet_ids = var.inst_subnet_ids
+  tags = var.tags
 }
 
 resource "aws_db_instance" "k3s" {
@@ -22,6 +23,7 @@ resource "aws_db_instance" "k3s" {
   parameter_group_name = "default.mysql5.7"
   vpc_security_group_ids = [ aws_security_group.k3s_mysql.id]
   skip_final_snapshot = true
+  tags = var.tags
 }
 
 resource "aws_security_group" "k3s_mysql" {
@@ -36,7 +38,10 @@ resource "aws_security_group" "k3s_mysql" {
     protocol    = "tcp"
     security_groups = [aws_security_group.master.id]
   }
-  tags = {
-    Name = "${var.prefix}-k3sRDS"
-  }
+  tags = merge(
+    {
+      Name = "${var.prefix}-k3sRDS"
+    },
+    var.tags,
+  )
 }

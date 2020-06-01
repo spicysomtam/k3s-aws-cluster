@@ -20,3 +20,10 @@ variable "a_num_servers" {
   description = "Number of agent/worker server instances to deploy."
   default = "2"
 }
+
+variable "tags" {
+  default = {
+    Terraform = "true"
+    Environment = "k3"
+  }
+}

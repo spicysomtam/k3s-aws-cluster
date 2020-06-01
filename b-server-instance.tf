@@ -7,7 +7,10 @@ resource "aws_instance" "bastion" {
   subnet_id = var.lb_subnet_ids[1]
   vpc_security_group_ids = [aws_security_group.bastion.id]
 
-  tags = {
-    Name = "${var.prefix}-k3sBastion${count.index}"
-  }
+  tags = merge(
+    {
+      Name = "${var.prefix}-k3sBastion${count.index}"
+    },
+    var.tags,
+  )
 }
