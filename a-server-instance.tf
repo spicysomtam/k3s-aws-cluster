@@ -13,6 +13,10 @@ resource "aws_instance" "agent" {
   })
   depends_on = [ aws_instance.master ]
 
+  root_block_device {
+    volume_size = var.a_server_disk_size
+  }
+
   tags = merge(
     {
       Name = "${var.prefix}-k3sAgent${count.index}"

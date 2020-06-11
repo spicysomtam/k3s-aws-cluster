@@ -20,6 +20,10 @@ resource "aws_instance" "master" {
     ignore_changes = all
   }
 
+  root_block_device {
+    volume_size = var.m_server_disk_size
+  }
+
   tags = merge(
     {
       Name = "${var.prefix}-k3sMaster${count.index}"

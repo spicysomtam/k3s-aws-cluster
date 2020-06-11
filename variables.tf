@@ -16,6 +16,11 @@ variable "m_num_servers" {
   default = "2"
 }
 
+variable "m_server_disk_size" {
+  description = "Size of master server root device in Gb."
+  default = "20"
+}
+
 variable "vpc_id" {
   description = "Id of vpc to deploy stack into."
 }
@@ -43,6 +48,11 @@ variable "a_num_servers" {
 variable "b_inst_type" {
   description = "Bastion server instance type."
   default     = "t3a.micro"
+}
+
+variable "a_server_disk_size" {
+  description = "Size of agent server root device in Gb."
+  default = "20"
 }
 
 variable "bastion_enabled" {
