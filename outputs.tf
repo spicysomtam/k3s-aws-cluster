@@ -26,8 +26,8 @@ output "rds_username" {
   value = var.rds_username
 }
 
-output "mysql_password" {
-  value = random_password.mysql_password.result
+output "rds_password" {
+  value = random_password.rds_password.result
 }
 
 output "deployment_prefix" {
