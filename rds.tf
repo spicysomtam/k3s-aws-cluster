@@ -3,7 +3,7 @@ locals {
   aurora_engine_version = "5.7.mysql_aurora.2.08.1"
 }
 
-resource "random_password" "rds_password" {
+resource "random_password" "mysql_password" {
   length  = 10
   special = false
 }
@@ -25,7 +25,7 @@ resource "aws_db_instance" "k3s" {
   name                 = "${var.prefix}k3s"
   identifier           = "${var.prefix}k3s"
   username             = var.rds_username
-  password             = random_password.rds_password.result
+  password             = random_password.mysql_password.result
   parameter_group_name = "default.mysql5.7"
   vpc_security_group_ids = [ aws_security_group.k3s_mysql.id]
   skip_final_snapshot = true
@@ -39,7 +39,7 @@ resource "aws_rds_cluster" "k3s" {
   engine_version          = local.aurora_engine_version
   database_name           = "${var.prefix}k3s"
   master_username         = var.rds_username
-  master_password         = random_password.rds_password.result
+  master_password         = random_password.mysql_password.result
   vpc_security_group_ids = [ aws_security_group.k3s_mysql.id]
   skip_final_snapshot     = true
   tags                    = var.tags

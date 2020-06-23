@@ -6,8 +6,8 @@ output "rds_username" {
   value = module.k3s.rds_username
 }
 
-output "rds_password" {
-  value = module.k3s.rds_password
+output "mysql_password" {
+  value = module.k3s.mysql_password
 }
 
 output "vpc_id" {
