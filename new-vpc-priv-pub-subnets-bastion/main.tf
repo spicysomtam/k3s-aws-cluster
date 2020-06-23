@@ -33,7 +33,7 @@ module "vpc" {
 
 module "k3s" {
   # Use this if pulling module from github
-  #source = "github.com/spicysomtam/k3s-aws-cluster-simple?ref=v1.0.x"
+  #source = "github.com/spicysomtam/k3s-aws-cluster?ref=v1.0.x"
   source = "../"
   prefix = var.prefix
   vpc_id = module.vpc.vpc_id

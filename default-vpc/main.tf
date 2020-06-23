@@ -12,7 +12,7 @@ data "aws_subnet_ids" "default" {
 
 module "k3s" {
   # Use this if pulling module from github
-  #source = "github.com/spicysomtam/k3s-aws-cluster-simple?ref=v1.0.x"
+  #source = "github.com/spicysomtam/k3s-aws-cluster?ref=v1.0.x"
   source = "../"
   prefix = "k1"
   vpc_id = data.aws_vpc.default.id
@@ -33,6 +33,9 @@ module "k3s" {
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
   kubeconfig_on_console = "1"
+
+  # Use aurordb mysql rather than mysql community?
+  use_aurora_db = false
 
   tags = {
     Terraform = "true"

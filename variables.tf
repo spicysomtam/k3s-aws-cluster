@@ -56,8 +56,9 @@ variable "a_server_disk_size" {
 }
 
 variable "bastion_enabled" {
-  description = "Whether bastion server is created (0 or 1)."
-  default     = "0"
+  description = "Whether bastion server is created."
+  default = false
+  type = bool
 }
 
 variable "kubeconfig_on_console" {
@@ -114,12 +115,28 @@ variable "b_key_pair" {
   default = "my-keypair"
 }
 
-variable "mysql_inst_type" {
-  default = "db.t2.micro"
+variable "rds_inst_type" {
+  default = "db.t3.small"
 }
 
-variable "mysql_username" {
+# How many aurora instances to create; aws recommends 2 for mysql (1 writer 1 reader).
+# aws will automatically put them in different AZs.
+# If you need more instances increase > 2; in reality this means 1 writer and multiple readers althought the role can be moved around by aws. 
+variable "num_rds_instances" {
+  default = 2
+}
+
+variable "rds_username" {
   default = "admin"
+}
+
+# This stack defaults to using mysql community. 
+# Aurora offers approx 5x performance improvement over mysql community and storage fault tolerance across multiple AZs by default.
+# For testing I would stick with mysql; for a production setup use aurora.
+variable "use_aurora_db" {
+  description = "Whether to use aurora mysql instead of community mysql."
+  default = false
+  type = bool
 }
 
 variable "tags" {

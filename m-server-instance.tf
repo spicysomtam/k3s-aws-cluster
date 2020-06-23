@@ -9,12 +9,12 @@ resource "aws_instance" "master" {
 
   user_data = templatefile("${path.module}/m-userdata.tmpl", { 
     pwd = random_password.mysql_password.result, 
-    host = aws_db_instance.k3s.address, 
+    host = var.use_aurora_db ? aws_rds_cluster.k3s[0].endpoint : aws_db_instance.k3s[0].address, 
     inst-id = count.index,
     kubeconfig-console = var.kubeconfig_on_console,
     token = random_password.k3s_cluster_secret.result
   })
-  depends_on = [ aws_db_instance.k3s, aws_security_group.k3s_mysql ]
+  depends_on = [ aws_db_instance.k3s, aws_rds_cluster_instance.k3s, aws_security_group.k3s_mysql ]
 
   lifecycle {
     ignore_changes = all

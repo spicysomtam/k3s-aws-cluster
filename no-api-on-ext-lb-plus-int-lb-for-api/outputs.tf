@@ -2,8 +2,8 @@ output "lb_dns_name" {
   value = module.k3s.lb_dns_name
 }
 
-output "mysql_username" {
-  value = module.k3s.mysql_username
+output "rds_username" {
+  value = module.k3s.rds_username
 }
 
 output "mysql_password" {

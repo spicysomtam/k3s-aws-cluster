@@ -1,4 +1,5 @@
 resource "aws_security_group" "bastion" {
+  count = var.bastion_enabled ? 1 : 0
   name        = "${var.prefix}-k3sBastionServer"
   description = "k3s bastion ec2 instance"
   vpc_id      = var.vpc_id

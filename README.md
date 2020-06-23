@@ -1,6 +1,6 @@
 # Aim
 
-To provide a simple deployment of [k3s](https://k3s.io/) kubernetes clusters on aws installed using terraform.
+To provide a straightforward deployment of rancher [k3s](https://k3s.io/) kubernetes clusters on aws using terraform. In essence build yourself a simple k3s based cluster.
 
 Features implemented:
 
@@ -10,6 +10,7 @@ Features implemented:
 * Specify the EC2 instance types for master and agents.
 * Masters to use a shared RDS mysql instance.
 * Ability to specify RDS instance type.
+* Ability to choose between mysql community (default) and aurora mysql. With aurora you specify the number of instances (default 2; 1 reader and 1 writer). Aurora allows a high performant and resilient db for production deployments.
 * Not have any excess baggage like rancher install, deploy apps; you can create these after a cluster is deployed via terraform (terraform modules?) or other means.
 * Above features allow you to deploy clusters of many different sizes. Much flexibility. 
 * You can increase the number of agent nodes and re-run `terraform apply` to deploy more workers when a cluster needs more capacity.

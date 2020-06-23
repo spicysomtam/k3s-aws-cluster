@@ -22,8 +22,8 @@ output "lb_dns_name" {
   value = aws_lb.lb.dns_name
 }
 
-output "mysql_username" {
-  value = var.mysql_username
+output "rds_username" {
+  value = var.rds_username
 }
 
 output "mysql_password" {
