@@ -37,6 +37,7 @@ resource "aws_rds_cluster" "k3s" {
   cluster_identifier      = "${var.prefix}k3s"
   engine                  = local.aurora_engine
   engine_version          = local.aurora_engine_version
+  db_subnet_group_name    = aws_db_subnet_group.k3s.id
   database_name           = "${var.prefix}k3s"
   master_username         = var.rds_username
   master_password         = random_password.mysql_password.result
@@ -50,6 +51,7 @@ resource "aws_rds_cluster_instance" "k3s" {
   identifier              = "${var.prefix}k3s-${count.index}"
   engine                  = local.aurora_engine
   engine_version          = local.aurora_engine_version
+  db_subnet_group_name    = aws_db_subnet_group.k3s.id
   cluster_identifier      = aws_rds_cluster.k3s[0].id
   instance_class          = var.rds_inst_type
   db_parameter_group_name = "default.aurora-mysql5.7"
