@@ -5,7 +5,7 @@ resource "aws_instance" "agent" {
   iam_instance_profile = aws_iam_instance_profile.k3s.name
   key_name = var.k3s_key_pair
   subnet_id = var.inst_subnet_ids[ count.index % length(var.inst_subnet_ids) ]
-  vpc_security_group_ids = concat([aws_security_group.agent.id], var.a_additional_sg)
+  vpc_security_group_ids = concat(var.a_additional_sg, [aws_security_group.agent.id])
 
   user_data = templatefile("${path.module}/a-userdata.tmpl", { 
     host = aws_instance.master[0].private_ip, 
