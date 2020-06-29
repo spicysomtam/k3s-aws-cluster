@@ -17,6 +17,7 @@ Features implemented:
 * Allows public and private subnets to be defined. Public is where the load balancer and bastion go; private is where the cluster is provisioned.
 * Optional: can add a bastion host to allow ssh jumping from public to private subnets so you can get the k3s nodes (where you choose to have this config).
 * Ability to turn off port 6443 (kubernetes api) on the load balancer (see below for details).
+* Able to attach additional security groups to masters and agents. This means you can provide additional access to these nodes outside the module. For example if you define an additional load balancer and want to open up some additional ports for it.
 
 Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf).
 
