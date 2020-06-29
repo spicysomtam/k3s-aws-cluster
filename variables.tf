@@ -21,6 +21,12 @@ variable "m_server_disk_size" {
   default = "20"
 }
 
+variable "m_additional_sg" {
+  description = "Additional sg's to attach to the master servers."
+  default     = []
+  type        = list(string)
+}
+
 variable "vpc_id" {
   description = "Id of vpc to deploy stack into."
 }
@@ -53,6 +59,12 @@ variable "b_inst_type" {
 variable "a_server_disk_size" {
   description = "Size of agent server root device in Gb."
   default = "20"
+}
+
+variable "a_additional_sg" {
+  description = "Additional sg's to attach to the agent servers."
+  default     = []
+  type        = list(string)
 }
 
 variable "bastion_enabled" {
