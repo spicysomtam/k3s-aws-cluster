@@ -5,7 +5,7 @@ resource "aws_instance" "master" {
   iam_instance_profile = aws_iam_instance_profile.k3s.name
   key_name = var.k3s_key_pair
   subnet_id = var.inst_subnet_ids[ count.index % length(var.inst_subnet_ids) ]
-  vpc_security_group_ids = concat(var.m_additional_sg, list(aws_security_group.master.id))
+  vpc_security_group_ids = concat([aws_security_group.master.id], var.m_additional_sg)
 
   user_data = templatefile("${path.module}/m-userdata.tmpl", { 
     pwd = random_password.mysql_password.result, 
