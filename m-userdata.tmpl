@@ -34,11 +34,26 @@ done
 
 # Display kubeconfig to console.
 [ ${inst-id} -eq 0 -a ${kubeconfig-console} -eq 1 ] && {
+  kc=~root/.kube/config
+  ss=/etc/cron.daily/kube-config-to-console.sh
+
+  cat > $ss << EOF
+#!/bin/bash
+
+kc=~root/.kube/config
+
+[ -r \$kc ] && {
   echo ===================================================================== > /dev/console
   echo Cluster kubeconfig: > /dev/console
   echo ===================================================================== > /dev/console
-  cat ~root/.kube/config > /dev/console
+  cat \$kc > /dev/console
   echo ===================================================================== > /dev/console
+  echo End cluster kubeconfig > /dev/console
+}
+EOF
+
+  chmod 755 $ss
+  $ss
 }
 
 # finally how does k3s look?
