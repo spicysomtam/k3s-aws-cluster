@@ -2,4 +2,6 @@
 # Provider Configuration
 #
 
-provider "random" {}
+provider "random" {
+  version     = "~> 2.3"
+}
