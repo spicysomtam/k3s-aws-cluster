@@ -17,6 +17,11 @@ resource "aws_instance" "agent" {
     volume_size = var.a_server_disk_size
   }
 
+  # Ignore changes on a new ami shipped by aws
+  lifecycle {
+    ignore_changes = ami
+  }
+
   tags = merge(
     {
       Name = "${var.prefix}-k3sAgent${count.index}"
