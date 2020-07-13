@@ -19,7 +19,9 @@ resource "aws_instance" "agent" {
 
   # Ignore changes on a new ami shipped by aws
   lifecycle {
-    ignore_changes = ami
+    ignore_changes = [
+      ami,
+    ]
   }
 
   tags = merge(
