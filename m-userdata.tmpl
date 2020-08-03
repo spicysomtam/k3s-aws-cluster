@@ -1,7 +1,4 @@
 #! /bin/bash
-# Instructions say we need docker.
-curl https://releases.rancher.com/install-docker/18.09.sh | sh
-sudo usermod -aG docker ubuntu
 
 # Let the first master node setup mysql and k3s; other master nodes wait before setup
 [ ${inst-id} -ne 0 ] && sleep 60

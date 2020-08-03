@@ -1,4 +1,5 @@
 resource "aws_lb_target_group" "https" {
+  count    = var.lb_enabled ? 1 : 0
   name     = "${var.prefix}-k3s-tcp-443"
   port     = 443
   protocol = "TCP"
@@ -15,15 +16,15 @@ resource "aws_lb_target_group" "https" {
 }
 
 resource "aws_lb_target_group_attachment" "https_m" {
-  target_group_arn = aws_lb_target_group.https.arn
+  target_group_arn = aws_lb_target_group.https[0].arn
   target_id        = aws_instance.master[count.index].id
-  count = var.m_num_servers
+  count            = var.lb_enabled ? var.m_num_servers : 0
   port             = 443
 }
 
 resource "aws_lb_target_group_attachment" "https_a" {
-  target_group_arn = aws_lb_target_group.https.arn
+  target_group_arn = aws_lb_target_group.https[0].arn
   target_id        = aws_instance.agent[count.index].id
-  count = var.a_num_servers
+  count            = var.lb_enabled ? var.a_num_servers : 0
   port             = 443
 }

@@ -31,6 +31,14 @@ variable "vpc_id" {
   description = "Id of vpc to deploy stack into."
 }
 
+# In some instances may wish to turn off the lb balancer; eg this does not fit your use case.
+# We had a case where the user wanted to create their own internal load balancer providing access to just the k8s api
+variable "lb_enabled" {
+  description = "Whether the lb is enabled."
+  type        = bool
+  default     = true
+}
+
 variable "lb_subnet_ids" {
   description = "List of subnet ids to attach the lb."
   type        = list(string)

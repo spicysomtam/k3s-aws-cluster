@@ -2,6 +2,10 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+locals {
+  key_pair = "spicysomtam-aws4"
+}
+
 data "aws_vpc" "default" {
     default = true
 }
@@ -29,13 +33,16 @@ module "k3s" {
   a_num_servers = "2"
 
   # ssh keypair for instances
-  k3s_key_pair = "spicysomtam-aws4"
+  k3s_key_pair = local.key_pair
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
   kubeconfig_on_console = "1"
 
   # Use aurordb mysql rather than mysql community?
   use_aurora_db = false
+
+  bastion_enabled = true
+  b_key_pair = local.key_pair
 
   tags = {
     Terraform = "true"
