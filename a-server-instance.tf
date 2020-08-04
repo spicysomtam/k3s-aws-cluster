@@ -21,6 +21,7 @@ resource "aws_instance" "agent" {
   lifecycle {
     ignore_changes = [
       ami,
+      user_data,
     ]
   }
 
