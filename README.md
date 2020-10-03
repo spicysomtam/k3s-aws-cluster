@@ -19,7 +19,7 @@ Features implemented:
 * Ability to turn off port 6443 (kubernetes api) on the load balancer (see below for details).
 * Able to attach additional security groups to masters and agents. This means you can provide additional access to these nodes outside the module. For example if you define an additional load balancer and want to open up some additional ports for it.
 
-Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf).
+Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf), which I decided to keep as is as a simple/poc deploy.
 
 # Single load balancer
 
