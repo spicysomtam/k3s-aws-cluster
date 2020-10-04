@@ -1,4 +1,5 @@
 tf_path = "default-vpc"
+bastion_enabled = "false"
 
 pipeline {
 
@@ -50,10 +51,8 @@ pipeline {
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
 
-            if (params.bastion_enabled) {
+            if (params.bastion_enabled == true) {
               bastion_enable = "true"
-            } else {
-              bastion_enable = "false"
             }
 
             println "Bastion enabled is ${bastion_enabled}!" // debug
