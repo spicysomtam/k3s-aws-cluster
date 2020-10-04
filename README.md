@@ -140,3 +140,6 @@ I would recommend using the main load balancer for service ingress and just use 
 
 I have included an [example](no-api-on-ext-lb-plus-int-lb-for-api/main.tf).
 
+# Jenkins pipeline
+
+I have included a sample `Jenkinsfile` pipeline in the `default-vpc` example. You could adapt this to the other examples or your requirements. Its a minimum config deploy; I mean it has the bare minimum number of parameters required to do a deploy; you may wish to expand this if you need to specify other parameters.

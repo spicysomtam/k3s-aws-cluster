@@ -28,11 +28,11 @@ pipeline {
       steps {
         script {
           if (params.prefix == '') {
-            currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " UNKNOWN-" + params.deploy
+            currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " UNKNOWN-"
             error("Prefix not defined!")
           }
 
-          currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " " + params.prefix + "-" + params.deploy
+          currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " " + params.prefix + "-"
           plan = params.prefix + '.plan'
         }
       }
