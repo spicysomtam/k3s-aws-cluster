@@ -33,7 +33,7 @@ pipeline {
           }
 
           currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " " + params.prefix + "-" + params.deploy
-          plan = params.prefix + "-" + params.deploy + '.plan'
+          plan = params.prefix + '.plan'
         }
       }
     }
@@ -58,7 +58,7 @@ pipeline {
                 -var prefix=${params.prefix} \
                 -var m_num_servers=${params.m_num_servers} \
                 -var a_num_servers=${params.a_num_servers} \
-                -var bastion_enabled=${params.bastion_enabled} \
+                -var bastion_enabled=${params.bastion_enabled.toString()} \
                 -var key_pair=${params.ec2_key_pair} \
                 -out ${plan}
             """
