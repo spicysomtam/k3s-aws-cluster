@@ -2,10 +2,6 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-locals {
-  key_pair = "spicysomtam-aws4"
-}
-
 data "aws_vpc" "default" {
     default = true
 }
@@ -18,7 +14,7 @@ module "k3s" {
   # Use this if pulling module from github
   #source = "github.com/spicysomtam/k3s-aws-cluster?ref=v1.0.x"
   source = "../"
-  prefix = "k1"
+  prefix = var.prefix
   vpc_id = data.aws_vpc.default.id
 
   # Idea here is to put the load balancer on the pub subnets and the cluster/mysql on the private subnets so its secure.
@@ -27,24 +23,22 @@ module "k3s" {
   inst_subnet_ids = data.aws_subnet_ids.default.ids
 
   # Number of master nodes; 2 is recommended for fault tolerance; 1 if you just want a dev instance.
-  m_num_servers = "2"
+  m_num_servers = var.m_num_servers
 
   # Number of agent/worker nodes; can be zero if you only want 2 masters.
-  a_num_servers = "2"
+  a_num_servers = var.a_num_servers
 
   # ssh keypair for instances
-  k3s_key_pair = local.key_pair
+  k3s_key_pair = var.key_pair
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
-  kubeconfig_on_console = "1"
+  kubeconfig_on_console = true
 
   # Use aurordb mysql rather than mysql community?
   use_aurora_db = false
 
-  bastion_enabled = true
-  b_key_pair = local.key_pair
+  bastion_enabled = var.bastion_enabled
+  b_key_pair = var.key_pair
 
-  tags = {
-    Terraform = "true"
-  }
+  tags = var.tags
 }

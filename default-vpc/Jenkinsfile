@@ -1,0 +1,117 @@
+pipeline {
+
+   parameters {
+    choice(name: 'action', choices: 'create\ndestroy', description: 'Create/update or destroy stack.')
+    string(name: 'prefix', defaultValue : 'k3', description: "Prefix for AWS resources so you can create multiple stacks.")
+    string(name: 'ec2_key_pair', defaultValue : 'spicysomtam-aws4', description: "k8s node ssh keypair.")
+    string(name: 'm_num_servers', defaultValue : '2', description: "Number of master nodes to create (should be > 1).")
+    string(name: 'a_num_servers', defaultValue : '2', description: "Number of agent nodes to create.")
+    booleanParam(name: 'create_bastion', defaultValue : true, description: "Whether to create the bastion server.")
+    string(name: 'credential', defaultValue : 'jenkins', description: "Jenkins credential that provides the AWS access key and secret.")
+    string(name: 'region', defaultValue : 'eu-west-1', description: "AWS region.")
+  }
+
+  options {
+    disableConcurrentBuilds()
+    timeout(time: 1, unit: 'HOURS')
+    withAWS(credentials: params.credential, region: params.region)
+    ansiColor('xterm')
+  }
+
+  agent { label 'master' }
+
+  stages {
+
+    stage('Setup') {
+      steps {
+        script {
+          if (params.prefix == '') {
+            currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " UNKNOWN-" + params.deploy
+            error("Prefix not defined!")
+          }
+
+          currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action + " " + params.prefix + "-" + params.deploy
+          plan = params.prefix + "-" + params.deploy + '.plan'
+        }
+      }
+    }
+
+    stage('TF Plan') {
+      when {
+        expression { params.action == 'create' }
+      }
+      steps {
+        script {
+          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: params.credential, 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
+            sh """
+              cd ${params.deploy}
+              terraform init
+              terraform workspace new ${params.prefix} || true
+              terraform workspace select ${params.prefix}
+              terraform plan \
+                -var prefix=${params.prefix} \
+                -var m_num_servers=${params.m_num_servers} \
+                -var a_num_servers=${params.a_num_servers} \
+                -var bastion_enabled=${params.bastion_enabled} \
+                -var aws_region=${params.region} \
+                -var key_pair=${params.ec2_key_pair} \
+                -out ${plan}
+            """
+          }
+        }
+      }
+    }
+
+    stage('TF Apply') {
+      when {
+        expression { params.action == 'create' }
+      }
+      steps {
+        script {
+          input "Create terraform stack ${params.prefix}-${params.deploy} in aws?" 
+
+          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: params.credential, 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
+            sh """
+              cd ${params.deploy}
+              terraform apply -input=false -auto-approve ${plan}
+            """
+          }
+        }
+      }
+    }
+
+    stage('TF Destroy') {
+      when {
+        expression { params.action == 'destroy' }
+      }
+      steps {
+        script {
+          input "Destroy terraform stack ${params.prefix}-${params.deploy} in aws?" 
+
+          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: params.credential, 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
+            sh """
+              cd ${params.deploy}
+              terraform init
+              terraform workspace select ${params.prefix}
+              terraform destroy -auto-approve
+            """
+          }
+        }
+      }
+    }
+
+  }
+
+}
