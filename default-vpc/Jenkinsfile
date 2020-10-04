@@ -48,6 +48,7 @@ pipeline {
             credentialsId: params.credential, 
             accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+            string bastion_enabled=params.bastion_enabled.toString()
 
             sh """
               cd ${tf_path}
@@ -58,7 +59,7 @@ pipeline {
                 -var prefix=${params.prefix} \
                 -var m_num_servers=${params.m_num_servers} \
                 -var a_num_servers=${params.a_num_servers} \
-                -var bastion_enabled=${params.bastion_enabled.toString()} \
+                -var bastion_enabled=${bastion_enabled} \
                 -var key_pair=${params.ec2_key_pair} \
                 -out ${plan}
             """
