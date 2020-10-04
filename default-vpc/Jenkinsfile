@@ -59,7 +59,6 @@ pipeline {
                 -var m_num_servers=${params.m_num_servers} \
                 -var a_num_servers=${params.a_num_servers} \
                 -var bastion_enabled=${params.bastion_enabled} \
-                -var aws_region=${params.region} \
                 -var key_pair=${params.ec2_key_pair} \
                 -out ${plan}
             """
