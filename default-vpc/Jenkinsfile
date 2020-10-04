@@ -48,7 +48,9 @@ pipeline {
             credentialsId: params.credential, 
             accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-            string bastion_enabled=params.bastion_enabled.toString()
+
+            bastion_enabled=params.bastion_enabled.toString()
+            println "Bastion enabled is ${bastion_enabled}!" // debug
 
             sh """
               cd ${tf_path}
