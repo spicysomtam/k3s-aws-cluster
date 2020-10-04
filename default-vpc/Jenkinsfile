@@ -1,5 +1,4 @@
 tf_path = "default-vpc"
-//bastion_enabled = "false"
 
 pipeline {
 
@@ -49,12 +48,6 @@ pipeline {
             credentialsId: params.credential, 
             accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-
-
-            bastion_enabled = params.create_bastion.toString()
-
-            println "Bastion enabled is ${params.create_bastion}!" // debug
-            println "Bastion enabled is ${bastion_enabled}!" // debug
 
             sh """
               cd ${tf_path}
