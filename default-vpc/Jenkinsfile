@@ -53,7 +53,7 @@ pipeline {
 
             bastion_enabled = params.create_bastion.toString()
 
-            echo "Bastion enabled is ${params.create_bastion}!" // debug
+            println "Bastion enabled is ${params.create_bastion}!" // debug
             println "Bastion enabled is ${bastion_enabled}!" // debug
 
             sh """
