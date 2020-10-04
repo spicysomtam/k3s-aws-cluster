@@ -1,3 +1,5 @@
+tf_path = "default-vpc"
+
 pipeline {
 
    parameters {
@@ -48,7 +50,7 @@ pipeline {
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
             sh """
-              cd ${params.deploy}
+              cd ${tf_path}
               terraform init
               terraform workspace new ${params.prefix} || true
               terraform workspace select ${params.prefix}
@@ -80,7 +82,7 @@ pipeline {
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
             sh """
-              cd ${params.deploy}
+              cd ${tf_path}
               terraform apply -input=false -auto-approve ${plan}
             """
           }
@@ -102,7 +104,7 @@ pipeline {
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
             sh """
-              cd ${params.deploy}
+              cd ${tf_path}
               terraform init
               terraform workspace select ${params.prefix}
               terraform destroy -auto-approve
