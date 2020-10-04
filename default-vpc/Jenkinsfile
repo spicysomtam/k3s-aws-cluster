@@ -55,6 +55,7 @@ pipeline {
               bastion_enable = "true"
             }
 
+            println "Bastion enabled is ${params.bastion_enabled}!" // debug
             println "Bastion enabled is ${bastion_enabled}!" // debug
 
             sh """
