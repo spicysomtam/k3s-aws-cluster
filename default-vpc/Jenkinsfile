@@ -65,7 +65,7 @@ pipeline {
                 -var prefix=${params.prefix} \
                 -var m_num_servers=${params.m_num_servers} \
                 -var a_num_servers=${params.a_num_servers} \
-                -var bastion_enabled=${bastion_enabled} \
+                -var bastion_enabled=${params.create_bastion} \
                 -var key_pair=${params.ec2_key_pair} \
                 -out ${plan}
             """
