@@ -73,7 +73,7 @@ pipeline {
       }
       steps {
         script {
-          input "Create terraform stack ${params.prefix}-${params.deploy} in aws?" 
+          input "Create terraform stack ${params.prefix} in aws?" 
 
           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
             credentialsId: params.credential, 
@@ -95,7 +95,7 @@ pipeline {
       }
       steps {
         script {
-          input "Destroy terraform stack ${params.prefix}-${params.deploy} in aws?" 
+          input "Destroy terraform stack ${params.prefix} in aws?" 
 
           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
             credentialsId: params.credential, 
