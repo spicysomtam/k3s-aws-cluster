@@ -52,7 +52,7 @@ module "k3s" {
   k3s_key_pair = "spicysomtam-aws4"
 
   # enable bastion so we can get to hosts in priv subnets
-  bastion_enabled = "1"
+  bastion_enabled = true
   b_key_pair = "spicysomtam-aws4"
 
   # no api on ext lb
@@ -62,7 +62,7 @@ module "k3s" {
   api_ingress_cidrs = [ "18.0.0.0/16" ]
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
-  kubeconfig_on_console = "1"
+  kubeconfig_on_console = true
 
   tags = var.tags
 }

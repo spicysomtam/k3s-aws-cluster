@@ -15,7 +15,7 @@ output "vpc_id" {
 }
 
 output "bastion_public_ip" {
-  value = module.k3s.bastion_instance[0].public_ip
+  value = length(module.k3s.bastion_instance) > 0 ? module.k3s.bastion_instance[0].public_ip : null
 }
 
 output "master_private_ips" {

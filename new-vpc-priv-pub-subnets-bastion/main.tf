@@ -52,11 +52,11 @@ module "k3s" {
   # ssh keypair for instances
   k3s_key_pair = "spicysomtam-aws4"
 
-  bastion_enabled = "1"
+  bastion_enabled = true
   b_key_pair = "spicysomtam-aws4"
 
   # Whether to display kubeconfig on console of master0 (0=false (default); 1=true)
-  kubeconfig_on_console = "1"
+  kubeconfig_on_console = true
  
   # Use aurordb mysql rather than mysql community?
   use_aurora_db = true
