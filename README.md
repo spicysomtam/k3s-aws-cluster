@@ -1,6 +1,6 @@
 # Aim
 
-To provide a straightforward deployment of rancher [k3s](https://k3s.io/) kubernetes clusters on aws using terraform. In essence build yourself a simple k3s based cluster.
+To provide a straightforward deployment of rancher [k3s](https://k3s.io/) light weight kubernetes clusters on aws using terraform. In essence build yourself a simple k3s based cluster. If you don't know what k3s is, its a super light weight but full featured kubernetes; this means more performance (memory/cpu) for your apps.
 
 Features implemented:
 
@@ -97,7 +97,7 @@ Once you have the kubeconfig, edit the server url in the kubeconfig and replace 
 
 ### kubeconfig can be displayed to master0 console
 
-There is the terraform varible `kubeconfig_on_console` to tell the kubeconfig to be displayed on the console of master0. Default is `0` meaning don't display to the console; `1` means display to the console.
+There is the terraform varible `kubeconfig_on_console` to tell the kubeconfig to be displayed on the console of master0. Default is `false` meaning don't display to the console; `true` means display to the console.
 
 Then you can use the aws cli to get the kubeconfig:
 ```
@@ -146,4 +146,4 @@ I have included a sample `Jenkinsfile` pipeline in the `default-vpc` example. Yo
 
 # k3os
 
-I could have used [k3os](https://github.com/rancher/k3os). However this repo predates my discovering k3os, and then I would have the issue of packing up a custom ami, and then redoing all the master/worker integration. Thus I did not see any great benefit in switching k3os and decided to stay with pure k3s, which probably has a bigger user base than k3os.
+I could have used [k3os](https://github.com/rancher/k3os). However this repo predates my discovering k3os, and then I would have the issue of building a custom ami image, and then redoing all the master/worker integration. Thus I did not see any great benefit in switching k3os and decided to stay with k3s, which probably has a bigger user base than k3os.
