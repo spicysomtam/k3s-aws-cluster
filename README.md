@@ -143,3 +143,7 @@ I have included an [example](no-api-on-ext-lb-plus-int-lb-for-api/main.tf).
 # Jenkins pipeline
 
 I have included a sample `Jenkinsfile` pipeline in the `default-vpc` example. You could adapt this to the other examples or your requirements. Its a minimum config deploy; I mean it has the bare minimum number of parameters required to do a deploy; you may wish to expand this if you need to specify other parameters.
+
+# k3os
+
+I could have used [k3os](https://github.com/rancher/k3os). However this repo predates my discovering k3os, and then I would have the issue of packing up a custom ami, and then redoing all the master/worker integration. Thus I did not see any great benefit in switching k3os and decided to stay with pure k3s, which probably has a bigger user base than k3os.
