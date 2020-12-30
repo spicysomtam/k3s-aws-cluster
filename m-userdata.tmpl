@@ -20,8 +20,10 @@ do
   sleep 5
 done
 
+kc=~root/.kube/config
+
 # Allow root to have superuser over the cluster:
-sudo cp /etc/rancher/k3s/k3s.yaml ~root/.kube/config
+sudo cp /etc/rancher/k3s/k3s.yaml $kc
 
 # Wait for all kube-system deployments to roll out
 for d in $(sudo kubectl get deploy -n kube-system --no-headers -o name)
@@ -31,7 +33,6 @@ done
 
 # Display kubeconfig to console.
 [ ${inst-id} -eq 0 -a "${kubeconfig-console}" = "true" ] && {
-  kc=~root/.kube/config
   ss=/etc/cron.daily/kube-config-to-console.sh
 
   cat > $ss << EOF
@@ -53,6 +54,11 @@ EOF
   $ss
 }
 
+# Save kubeconfig as an ssm parameter.
+[ ${inst-id} -eq 0 -a "${kubeconfig-ssm}" = "true" ] && {
+  aws ssm put-parameter --name ${prefix}-kubeconfig --value "$(cat ${kc})" --type String
+}
+
 # finally how does k3s look?
 sudo kubectl get nodes
-sudo kubectl get pods --all-namespaces
+sudo kubectl get all -A

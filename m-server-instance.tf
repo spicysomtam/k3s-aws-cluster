@@ -12,6 +12,8 @@ resource "aws_instance" "master" {
     host = var.use_aurora_db ? aws_rds_cluster.k3s[0].endpoint : aws_db_instance.k3s[0].address, 
     inst-id = count.index,
     kubeconfig-console = var.kubeconfig_on_console,
+    kubeconfig-ssm = var.kubeconfig_ssm,
+    prefix = var.prefix,
     token = random_password.k3s_cluster_secret.result
   })
   depends_on = [ aws_db_instance.k3s, aws_rds_cluster_instance.k3s, aws_security_group.k3s_mysql ]

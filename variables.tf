@@ -83,7 +83,14 @@ variable "bastion_enabled" {
 
 variable "kubeconfig_on_console" {
   description = "Whether kubeconfig should be sent to master0 console."
-  default     = "0"
+  default = false
+  type = bool
+}
+
+variable "kubeconfig_ssm" {
+  description = "Whether kubeconfig should be stored as ssm parameter."
+  default = true
+  type = bool
 }
 
 variable "api_on_lb" {
