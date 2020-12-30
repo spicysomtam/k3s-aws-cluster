@@ -93,7 +93,8 @@ resource "aws_iam_policy" "k3s" {
       "elasticloadbalancing:RegisterTargets",
       "elasticloadbalancing:SetLoadBalancerPoliciesOfListener",
       "iam:CreateServiceLinkedRole",
-      "kms:DescribeKey"
+      "kms:DescribeKey",
+      "ssm:PutParameter"
     ],
     "Resource": [
       "*"
