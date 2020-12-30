@@ -89,7 +89,7 @@ pipeline {
             """
 
             echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to arrive..."
-            kc = sh(returnStdout: true, script: """
+            kc = sh(returnStdout: true, script: """#!/bin/bash +x # hide horrible output
               c=0
               i=60
               while [ \$c -lt 300 ]
