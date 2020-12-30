@@ -6,13 +6,16 @@
 # Let the first master node setup mysql and k3s; other master nodes wait before setup
 [ ${inst-id} -ne 0 ] && sleep 60
 
-# aws cli v1 install
+# aws cli v1 install; region setup, etc
 DEBIAN_FRONTEND=noninteractive apt update && apt -y install zip unzip python3 python3-venv python-is-python3
 
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
 ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 rm -rf awscli-bundle
+
+export AWS_REGION=`curl --silent http://169.254.169.254/latest/meta-data/placement/region`
+export AWS_DEFAULT_REGION=`curl --silent http://169.254.169.254/latest/meta-data/placement/region`
 
 # Prepare kubectl for root
 sudo mkdir ~root/.kube
