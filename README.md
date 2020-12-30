@@ -95,6 +95,10 @@ Previously you would have had to ssh on to one the k3s nodes and get it from roo
 
 Once you have the kubeconfig, edit the server url in the kubeconfig and replace 127.0.0.1 with the load balancer dns name.
 
+### kubeconfig saved as a System Manager parameter
+
+There is a terraform variable `kubeconfig_ssm` to write the kubeconfig to a Systems Manager parameter. The name of the parameter is `<prefix>-kubeconfig`. By default the variable is `true`.
+
 ### kubeconfig can be displayed to master0 console
 
 There is the terraform varible `kubeconfig_on_console` to tell the kubeconfig to be displayed on the console of master0. Default is `false` meaning don't display to the console; `true` means display to the console.

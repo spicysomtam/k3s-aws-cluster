@@ -3,6 +3,8 @@
 # Let the first master node setup mysql and k3s; other master nodes wait before setup
 [ ${inst-id} -ne 0 ] && sleep 60
 
+# aws cli v1 install
+DEBIAN_FRONTEND=noninteractive apt update && apt -y install zip unzip
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
 ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
@@ -43,11 +45,11 @@ done
 
 kc=~root/.kube/config
 
-[ -r $kc ] && {
+[ -r \$kc ] && {
   echo ===================================================================== > /dev/console
   echo Cluster kubeconfig: > /dev/console
   echo ===================================================================== > /dev/console
-  cat $kc > /dev/console
+  cat \$kc > /dev/console
   echo ===================================================================== > /dev/console
   echo End cluster kubeconfig > /dev/console
 }
