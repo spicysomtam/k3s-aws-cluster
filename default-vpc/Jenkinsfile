@@ -110,6 +110,9 @@ pipeline {
               terraform init
               terraform workspace select ${params.prefix}
               terraform destroy -auto-approve
+
+              #Cleanup kubeconfig in ssm (if its there)
+              aws ssm delete-parameter --name ${params.prefix}-kubeconfig 2>/dev/null || true
             """
           }
         }

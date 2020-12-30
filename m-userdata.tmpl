@@ -3,6 +3,11 @@
 # Let the first master node setup mysql and k3s; other master nodes wait before setup
 [ ${inst-id} -ne 0 ] && sleep 60
 
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+rm -rf awscli-bundle
+
 # Prepare kubectl for root
 sudo mkdir ~root/.kube
 sudo chmod 750 ~root/.kube
@@ -20,10 +25,8 @@ do
   sleep 5
 done
 
-kc=~root/.kube/config
-
 # Allow root to have superuser over the cluster:
-sudo cp /etc/rancher/k3s/k3s.yaml \$kc
+sudo cp /etc/rancher/k3s/k3s.yaml ~root/.kube/config
 
 # Wait for all kube-system deployments to roll out
 for d in $(sudo kubectl get deploy -n kube-system --no-headers -o name)
@@ -40,11 +43,11 @@ done
 
 kc=~root/.kube/config
 
-[ -r \$kc ] && {
+[ -r $kc ] && {
   echo ===================================================================== > /dev/console
   echo Cluster kubeconfig: > /dev/console
   echo ===================================================================== > /dev/console
-  cat \$kc > /dev/console
+  cat $kc > /dev/console
   echo ===================================================================== > /dev/console
   echo End cluster kubeconfig > /dev/console
 }
@@ -56,7 +59,7 @@ EOF
 
 # Save kubeconfig as an ssm parameter.
 [ ${inst-id} -eq 0 -a "${kubeconfig-ssm}" = "true" ] && {
-  aws ssm put-parameter --name ${prefix}-kubeconfig --value "$(cat \$kc)" --type String
+  aws ssm put-parameter --name ${prefix}-kubeconfig --value "`cat ~root/.kube/config`" --type String
 }
 
 # finally how does k3s look?
