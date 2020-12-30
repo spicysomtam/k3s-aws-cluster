@@ -88,7 +88,7 @@ pipeline {
               terraform apply -input=false -auto-approve ${plan}
             """
 
-            echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to arrive..."
+            echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to be created..."
             kc = sh(returnStdout: true, script: """#!/bin/bash +x
               c=0
               i=60
@@ -104,8 +104,11 @@ pipeline {
 
             if (kc != '') {
               echo "Kubeconfig:"
-              echo kc
+              kc.split('\n').each {
+                echo it
+              }
             }
+
           }
         }
       }
