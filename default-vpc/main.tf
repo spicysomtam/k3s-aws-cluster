@@ -25,8 +25,14 @@ module "k3s" {
   # Number of master nodes; 2 is recommended for fault tolerance; 1 if you just want a dev instance.
   m_num_servers = var.m_num_servers
 
+  # Master instance type
+  m_inst_type = var.m_inst_type
+
   # Number of agent/worker nodes; can be zero if you only want 2 masters.
   a_num_servers = var.a_num_servers
+
+  # Agent instance type
+  a_inst_type = var.a_inst_type
 
   # ssh keypair for instances
   k3s_key_pair = var.key_pair

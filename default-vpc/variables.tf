@@ -17,9 +17,19 @@ variable "m_num_servers" {
   default = "2"
 }
 
+variable "m_inst_type" {
+  description = "Master server instance type."
+  default     = "t3a.medium"
+}
+
 variable "a_num_servers" {
   description = "Number of agent/worker server instances to deploy."
   default = "2"
+}
+
+variable "a_inst_type" {
+  description = "Agent server instance type."
+  default     = "t3a.medium"
 }
 
 variable "bastion_enabled" {

@@ -8,6 +8,7 @@ pipeline {
     string(name: 'ec2_key_pair', defaultValue : 'spicysomtam-aws4', description: "k8s node ssh keypair.")
     string(name: 'm_num_servers', defaultValue : '2', description: "Number of master nodes to create (should be > 1).")
     string(name: 'a_num_servers', defaultValue : '2', description: "Number of agent nodes to create.")
+    string(name: 'instance_type', defaultValue : 't3a.medium', description: "Instance type for masters and workers")
     booleanParam(name: 'create_bastion', defaultValue : true, description: "Whether to create the bastion server.")
     string(name: 'credential', defaultValue : 'jenkins', description: "Jenkins credential that provides the AWS access key and secret.")
     string(name: 'region', defaultValue : 'eu-west-1', description: "AWS region.")
@@ -58,6 +59,8 @@ pipeline {
                 -var prefix=${params.prefix} \
                 -var m_num_servers=${params.m_num_servers} \
                 -var a_num_servers=${params.a_num_servers} \
+                -var m_inst_type=${params.instance_type} \
+                -var a_inst_type=${params.instance_type} \
                 -var bastion_enabled=${params.create_bastion} \
                 -var key_pair=${params.ec2_key_pair} \
                 -out ${plan}
