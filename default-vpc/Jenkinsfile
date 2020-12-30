@@ -86,8 +86,10 @@ pipeline {
             sh """
               cd ${tf_path}
               terraform apply -input=false -auto-approve ${plan}
+            """
 
-              echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to arrive..."
+            echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to arrive..."
+            sh returnStdout: false, script: """
               c=0
               i=60
               while [ \$c -lt 300 ]
@@ -97,7 +99,10 @@ pipeline {
                 sleep \$i
                 c=\$((\$c+\$i))
               done
+            """
 
+            sh """
+              kc=\$(aws ssm get-parameter --name ${params.prefix}-kubeconfig 2>/dev/null || true)
               [ ! -z "\$kc" ] && {
                 echo "Kubeconfig:"
                 echo \$kc
