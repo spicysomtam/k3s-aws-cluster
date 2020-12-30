@@ -105,7 +105,8 @@ pipeline {
             if (kc != '') {
               echo "Kubeconfig:"
               kc.split("\n").each {
-                echo it
+                echo "${it}\n"
+                echo "test"
               }
             }
 
