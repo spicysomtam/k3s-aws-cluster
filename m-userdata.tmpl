@@ -30,7 +30,7 @@ do
 done
 
 # Display kubeconfig to console.
-[ ${inst-id} -eq 0 -a ${kubeconfig-console} -eq 1 ] && {
+[ ${inst-id} -eq 0 -a "${kubeconfig-console}" = "true" ] && {
   kc=~root/.kube/config
   ss=/etc/cron.daily/kube-config-to-console.sh
 
