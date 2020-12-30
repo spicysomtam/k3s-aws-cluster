@@ -1,10 +1,14 @@
 #! /bin/bash
 
+# Note: terraform will attempt to replace $ variables with variables passed to this.
+# Thus don't use shell $ variables!
+
 # Let the first master node setup mysql and k3s; other master nodes wait before setup
 [ ${inst-id} -ne 0 ] && sleep 60
 
 # aws cli v1 install
-DEBIAN_FRONTEND=noninteractive apt update && apt -y install zip unzip
+DEBIAN_FRONTEND=noninteractive apt update && apt -y install zip unzip python3 python-is-python3
+
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
 ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
