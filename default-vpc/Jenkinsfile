@@ -89,25 +89,23 @@ pipeline {
             """
 
             echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to arrive..."
-            sh returnStdout: false, script: """
+            kc = sh(returnStdout: true, script: """
               c=0
               i=60
               while [ \$c -lt 300 ]
               do
-                kc=\$(aws ssm get-parameter --name ${params.prefix}-kubeconfig 2>/dev/null || true)
+                kc=\$(aws ssm get-parameter --name ${params.prefix}-kubeconfig --query 'Parameter.Value' --out text 2>/dev/null || true)
                 [ ! -z "\$kc" ] && break
                 sleep \$i
                 c=\$((\$c+\$i))
               done
-            """
+              echo \$kc
+            """).trim()
 
-            sh """
-              kc=\$(aws ssm get-parameter --name ${params.prefix}-kubeconfig 2>/dev/null || true)
-              [ ! -z "\$kc" ] && {
-                echo "Kubeconfig:"
-                echo \$kc
-              }
-            """
+            if (kc != '') {
+              echo "Kubeconfig:"
+              echo kc
+            }
           }
         }
       }
