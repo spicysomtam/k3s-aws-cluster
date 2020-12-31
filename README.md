@@ -63,10 +63,6 @@ The EC2 key pair you want to use is already defined in aws. If not, it can be de
 
 I have refrained from hard coding these in the terraform as its bad practice. These should be defined in the shell by [environment variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html), etc.
 
-## Kube config
-
-You will need to ssh to one of the nodes, `sudo` to root, and then copy `~/.kube/config`. Remember when sshing to the nodes, login as user `ubuntu`.
-
 ## Deploying multiple clusters via the prefix
 
 If you are going to do this, its worth using `terraform workspaces` for each prefix, so you can track the state for each cluster.
@@ -91,13 +87,15 @@ However you are not prevented from increasing or decreasing the number of master
 
 Once the cluster is built, you will need to get the kubeconfig to start using it.
 
-Previously you would have had to ssh on to one the k3s nodes and get it from root ~/.kube/config, which may be a problem if you don't have a bastion host. Now you can get it from master0 console; see the next sub section.
+Previously you would have had to ssh on to one the k3s nodes and get it from root ~/.kube/config, which may be a problem if you don't have a bastion host. 
 
-Once you have the kubeconfig, edit the server url in the kubeconfig and replace 127.0.0.1 with the load balancer dns name.
+Now you can get it from the Jenkins pipeline or master0 console; see the following sections.
 
 ### kubeconfig saved as a System Manager parameter so it can be obtained from the Jenkins job console output
 
-There is a terraform variable `kubeconfig_ssm` to write the kubeconfig to a Systems Manager (ssm) parameter. The name of the ssm parameter is `<prefix>-kubeconfig`. By default the variable is `true`. The parameter is used to pass the kubeconfig from master0 back to the Jenkins job so the kubeconfig can be displayed at the end of the Jenkins job so you can easy get it. The ssm parameter is left inplace so you can get it again if required without needing to login via ssh to master0.
+There is a terraform variable `kubeconfig_ssm` to write the kubeconfig to a Systems Manager (ssm) parameter. The name of the ssm parameter is `<prefix>-kubeconfig`. By default the variable is `true`. The parameter is used to pass the kubeconfig from master0 back to the Jenkins job so the kubeconfig can be displayed at the end of the Jenkins job so you can easy get it. The ssm parameter is left inplace so you can get it again if required without needing to login via ssh to master0. See the Jenkinsfile in `default-vpc` folder for how this works.
+
+With this method, the load balancer url is automatically inserted.
 
 ### kubeconfig can be displayed to master0 console
 
@@ -130,6 +128,9 @@ users:
     username: admin
 =====================================================================
 ```
+
+Once you have the kubeconfig, edit the server url in the kubeconfig and replace 127.0.0.1 with the load balancer dns name.
+
 ## Disable kubernetes api on load balancer
 
 There may be situations where the kubernetes api should not be available on the load balancer, especially if its is internet facing.
