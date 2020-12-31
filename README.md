@@ -87,7 +87,7 @@ However you are not prevented from increasing or decreasing the number of master
 
 Once the cluster is built, you will need to get the kubeconfig to start using it.
 
-Previously you would have had to ssh on to one the k3s nodes and get it from root ~/.kube/config, which may be a problem if you don't have a bastion host. 
+Previously you would have had to ssh on to the k3s master0 node and get it from root ~/.kube/config, which may be a problem if you don't have a bastion host. 
 
 Now you can get it from the Jenkins pipeline or master0 console; see the following sections.
 
