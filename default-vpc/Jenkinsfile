@@ -106,14 +106,21 @@ pipeline {
             if (kc == "") {
               error "Unable to get SSM parameter ${params.prefix}-kubeconfig!"
             } else {
+              lb = sh(returnStdout: true, script: """#!/bin/bash +x
+                cd ${tf_path}
+                terraform output lb_dns_name
+              """).trim()
+
+              kc=kc.replace('127.0.0.1',lb)
+
+              echo "-----------------------------------------------------------------------------------------------------------------------------------"
               echo "Kubeconfig (SSM parameter ${params.prefix}-kubeconfig):"
+              echo "-----------------------------------------------------------------------------------------------------------------------------------"
               echo kc
-              /* 
-              kc.split("\\n").each {
-                echo "${it}\n"
-                echo "test"
-              }
-              */
+              echo "-----------------------------------------------------------------------------------------------------------------------------------"
+
+              # No longer required and insecure to leave it in ssm
+              sh "aws ssm delete-parameter --name ${params.prefix}-kubeconfig"
             }
 
           }
@@ -139,9 +146,6 @@ pipeline {
               terraform init
               terraform workspace select ${params.prefix}
               terraform destroy -auto-approve
-
-              #Cleanup kubeconfig in ssm (if its there)
-              aws ssm delete-parameter --name ${params.prefix}-kubeconfig 2>/dev/null || true
             """
           }
         }
