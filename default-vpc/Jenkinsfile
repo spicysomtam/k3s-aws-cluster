@@ -119,8 +119,8 @@ pipeline {
               echo kc
               echo "-----------------------------------------------------------------------------------------------------------------------------------"
 
-              # No longer required and insecure to leave it in ssm
-              sh "aws ssm delete-parameter --name ${params.prefix}-kubeconfig"
+              # Update the ssm parameter with the correct url
+              sh "aws ssm put-parameter --name ${params.prefix}-kubeconfig" --value "${kc}"
             }
 
           }
@@ -146,6 +146,9 @@ pipeline {
               terraform init
               terraform workspace select ${params.prefix}
               terraform destroy -auto-approve
+
+              # delete it if its there
+              aws ssm delete-parameter --name ${params.prefix}-kubeconfig" 2>/dev/null || true
             """
           }
         }

@@ -97,7 +97,7 @@ Once you have the kubeconfig, edit the server url in the kubeconfig and replace 
 
 ### kubeconfig saved as a System Manager parameter
 
-There is a terraform variable `kubeconfig_ssm` to write the kubeconfig to a Systems Manager parameter. The name of the parameter is `<prefix>-kubeconfig`. By default the variable is `true`.
+There is a terraform variable `kubeconfig_ssm` to write the kubeconfig to a Systems Manager parameter. The name of the parameter is `<prefix>-kubeconfig`. By default the variable is `true`. The parameter is used to pass the kubeconfig from the first master back to the Jenkins pipeline creating the cluster so the kubeconfig can be displayed at the end of the Jenkins job. Its left inplace so you can get it if required.
 
 ### kubeconfig can be displayed to master0 console
 
