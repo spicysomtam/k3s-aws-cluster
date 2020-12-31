@@ -1,4 +1,5 @@
 tf_path = "default-vpc"
+wait_ssm = 360
 
 pipeline {
 
@@ -88,11 +89,11 @@ pipeline {
               terraform apply -input=false -auto-approve ${plan}
             """
 
-            echo "Waiting 300s for ssm parameter ${params.prefix}-kubeconfig to be created..."
+            echo "Waiting ${wait_ssm}s for ssm parameter ${params.prefix}-kubeconfig to be created..."
             kc = sh(returnStdout: true, script: """#!/bin/bash +x
               c=0
-              i=60
-              while [ \$c -lt 300 ]
+              i=10
+              while [ \$c -lt ${wait_ssm} ]
               do
                 kc=\$(aws ssm get-parameter --name ${params.prefix}-kubeconfig --query 'Parameter.Value' --out text 2>/dev/null || true)
                 [ ! -z "\$kc" ] && break
