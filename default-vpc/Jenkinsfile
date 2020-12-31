@@ -111,7 +111,7 @@ pipeline {
                 terraform output lb_dns_name
               """).trim()
 
-              kc=kc.replace('127.0.0.1',lb)
+              kc=kc.replace('127.0.0.1',lb).replaceAll('default',params.prefix)
 
               echo "==================================================================================================================================="
               echo "Kubeconfig (SSM parameter ${params.prefix}-kubeconfig):"
@@ -120,9 +120,9 @@ pipeline {
               echo "==================================================================================================================================="
 
               // Update the ssm parameter with the correct url
-              echo "Updating SSM parameter {params.prefix}-kubeconfig with loadbalancer url..."
+              echo "Updating SSM parameter ${params.prefix}-kubeconfig with loadbalancer url and prefix..."
               sh """#!/bin/bash +x
-                aws ssm put-parameter --name ${params.prefix}-kubeconfig --type String --value "${kc}" --overwrite
+                aws ssm put-parameter --name ${params.prefix}-kubeconfig --type String --value "${kc}" --overwrite > /dev/null
               """
             }
 
