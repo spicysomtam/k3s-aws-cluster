@@ -150,7 +150,7 @@ pipeline {
               terraform destroy -auto-approve
 
               # delete it if its there
-              aws ssm delete-parameter --name ${params.prefix}-kubeconfig" 2>/dev/null || true
+              aws ssm delete-parameter --name ${params.prefix}-kubeconfig 2>/dev/null || true
             """
           }
         }
