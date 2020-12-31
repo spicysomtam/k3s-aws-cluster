@@ -99,15 +99,20 @@ pipeline {
                 sleep \$i
                 c=\$((\$c+\$i))
               done
-              echo \$kc
+              echo "\$kc"
             """).trim()
 
-            if (kc != "") {
-              echo "Kubeconfig:"
+            if (kc == "") {
+              error "Unable to get SSM parameter ${params.prefix}-kubeconfig!"
+            } else {
+              echo "Kubeconfig (SSM parameter ${params.prefix}-kubeconfig):"
+              echo kc
+              /* 
               kc.split("\\n").each {
                 echo "${it}\n"
                 echo "test"
               }
+              */
             }
 
           }
