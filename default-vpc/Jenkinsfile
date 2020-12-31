@@ -100,11 +100,11 @@ pipeline {
                 c=\$((\$c+\$i))
               done
               echo \$kc
-            """).trim()
+            """).readLines()
 
-            if (kc != '') {
+            if (kc.length() > 0) {
               echo "Kubeconfig:"
-              kc.split("\\n").each {
+              kc.each {
                 echo "${it}\n"
                 echo "test"
               }
