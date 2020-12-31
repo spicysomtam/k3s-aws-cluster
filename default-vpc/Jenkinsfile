@@ -89,7 +89,7 @@ pipeline {
               terraform apply -input=false -auto-approve ${plan}
             """
 
-            echo "Waiting ${wait_ssm}s for ssm parameter ${params.prefix}-kubeconfig to be created..."
+            echo "Waiting ${wait_ssm}s for ssm parameter ${params.prefix}-kubeconfig to be created by master0..."
             kc = sh(returnStdout: true, script: """#!/bin/bash +x
               c=0
               i=10
@@ -113,14 +113,15 @@ pipeline {
 
               kc=kc.replace('127.0.0.1',lb)
 
-              echo "-----------------------------------------------------------------------------------------------------------------------------------"
+              echo "==================================================================================================================================="
               echo "Kubeconfig (SSM parameter ${params.prefix}-kubeconfig):"
-              echo "-----------------------------------------------------------------------------------------------------------------------------------"
+              echo "==================================================================================================================================="
               echo kc
-              echo "-----------------------------------------------------------------------------------------------------------------------------------"
+              echo "==================================================================================================================================="
 
               // Update the ssm parameter with the correct url
-              sh """
+              echo "Updating SSM parameter {params.prefix}-kubeconfig with loadbalancer url..."
+              sh """#!/bin/bash +x
                 aws ssm put-parameter --name ${params.prefix}-kubeconfig --type String --value "${kc}" --overwrite
               """
             }
