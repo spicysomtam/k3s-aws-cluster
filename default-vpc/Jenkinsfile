@@ -119,7 +119,7 @@ pipeline {
               echo kc
               echo "-----------------------------------------------------------------------------------------------------------------------------------"
 
-              # Update the ssm parameter with the correct url
+              // Update the ssm parameter with the correct url
               sh "aws ssm put-parameter --name ${params.prefix}-kubeconfig" --value "${kc}"
             }
 
