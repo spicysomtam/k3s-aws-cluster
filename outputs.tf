@@ -3,7 +3,7 @@ output "master_instance" {
 }
 
 output "agent_instance" {
-  value = aws_instance.agent
+  value = aws_autoscaling_group.agent
 }
 
 output "bastion_instance" {

@@ -21,7 +21,3 @@ output "bastion_public_ip" {
 output "master_private_ips" {
   value = module.k3s.master_instance.*.private_ip
 }
-
-output "agent_private_ips" {
-  value = module.k3s.agent_instance.*.private_ip
-}

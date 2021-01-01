@@ -31,6 +31,9 @@ module "k3s" {
   # Number of agent/worker nodes; can be zero if you only want 2 masters.
   a_num_servers = var.a_num_servers
 
+  # Max number of agent/worker nodes.
+  a_max_servers = var.a_max_servers
+
   # Agent instance type
   a_inst_type = var.a_inst_type
 

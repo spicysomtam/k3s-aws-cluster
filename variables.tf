@@ -59,6 +59,11 @@ variable "a_num_servers" {
   default = "2"
 }
 
+variable "a_max_servers" {
+  description = "Max number of agent/worker server instances to deploy."
+  default = "10"
+}
+
 variable "b_inst_type" {
   description = "Bastion server instance type."
   default     = "t3a.micro"
