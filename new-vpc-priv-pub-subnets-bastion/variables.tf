@@ -29,6 +29,5 @@ variable "a_max_servers" {
 variable "tags" {
   default = {
     Terraform = "true"
-    Environment = "k3"
   }
 }

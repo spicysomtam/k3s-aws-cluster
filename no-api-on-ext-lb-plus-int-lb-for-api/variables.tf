@@ -37,6 +37,5 @@ variable "api_ingress_cidrs" {
 variable "tags" {
   default = {
     Terraform = "true"
-    Environment = "k3"
   }
 }
