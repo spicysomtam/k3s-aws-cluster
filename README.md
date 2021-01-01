@@ -83,6 +83,12 @@ This can be quite dangerous; basically recreating the masters. Thus this is bloc
 
 However you are not prevented from increasing or decreasing the number of masters. Care must be take on decreasing the number; that is remove masters from the cluster using say `kubectl drain` in advance of reducing the number via terraform. That is remove the nodes cleanly.
 
+## Worker nodes implemented as a launch configuration and auto scaling group
+
+This makes it easier to scale workers up and down, and one of the motivators for using an autoscaling group (asg) is to allow the Cluster Autoscaler (CA) to do autoscaling for you automatically (google Kubernetes Cluster Autoscaler to learn more). The CA works on the basis of checking for pods that go into Pending state; this means there is no free resources to run the pod; in this case the CA will increase the desired number of nodes in the asg. Conversly, when load reduces (typically after 10 minutes) the CA will scale nodes down in the asg. 
+
+I have not had any time to test the CA in k3s with AWS; I will add some notes when I get round to testing this.
+
 ## Getting the cluster kubeconfig
 
 Once the cluster is built, you will need to get the kubeconfig to start using it.
