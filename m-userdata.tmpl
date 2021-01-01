@@ -7,7 +7,7 @@
 [ ${inst-id} -ne 0 ] && sleep 60
 
 # aws cli v1 install; region setup, etc
-DEBIAN_FRONTEND=noninteractive apt update && apt -y install zip unzip python3 python3-venv python-is-python3
+DEBIAN_FRONTEND=noninteractive apt update && apt -y install zip unzip python3 python3-venv
 
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
