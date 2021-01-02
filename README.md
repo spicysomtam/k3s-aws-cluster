@@ -21,15 +21,19 @@ Features implemented:
 
 Adapted from my [rancher install on aws via terraform](https://github.com/spicysomtam/rancher-k3s-aws-tf), which I decided to keep as is as a simple/poc deploy.
 
-# Single load balancer
+# Single load balancer for kubernetes api and ingress
 
-The k3s master nodes are designed to run pod workloads, similar to agent/worker nodes. Thus the load balancer directs HTTP and HTTPS traffic to all the masters and agents.
+K3s by default uses the [treafik ingress controller](https://docs.traefik.io/providers/kubernetes-ingress/). There are a number of ingress controllers available for kubernetes (k8s) besides treafik; nginx (ingress-nginx and nginx-ingress), haproxy, etc. They all work the same and use the k8s ingress resource type. Ingress controllers work by inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 cloud load balancer even if you are hosting multiple dns names/deployments in k8s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to cost and complexity.
+
+The k3s master nodes are designed to run pod workloads, similar to worker nodes. Thus the load balancer directs HTTP and HTTPS traffic to all the masters and workers.
 
 The kubernetes api is only available on masters so the port for this (6443) is only directed at master nodes.
 
-K3s by default uses the [treafik ingress](https://docs.traefik.io/providers/kubernetes-ingress/). You will need to setup k8s annotations for this to work; treafik works on inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 cloud load balancer even if you are hosting multiple dns names/deployments in k3s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to the cost of operating the stack not to mention adding complexity.
-
-A load balancer is required even if you deploy a single master node cluster; the issue here is that the k3s certificate is set to the private IP of the host, rather than the public IP, and you will need to use `--insecure-skip-tls-verify` with `kubectl` on your client, which turns off TLS and thus is not secure. I am sure there is a work around for this.
+Originally when I created this deployment (June 2020), traefik worked perfectly as an ingress controller across multiple masters and workers. However this has broken over time, and can only assume traefik originally worked as a daemonset, and in more recently releases changed over to a deployment. Since this has broken, I decided to disable traefik ingress and switch to ingress-nginx, which can easily be deployed as a daemonset from the official helm3 chart. Reasons for using ingress-nginx over traefik:
+* ingress-nginx is more popular, more understood, and a standard kubernetes component.
+* traefik v1.7 shipped with k3s has a messy daemonset deployment (can't be deployed via a helm chart, although can now be done via traefik 2.x, but this functionality in the helm chart has just been released and traefik 2.x is not general availability/stable at this time).
+* ingress-nginx has a more stable feature set while traefik feature set is in flux and I can't guarentee it will change greatly (it has already broke my deployment once so why should I stick with it?)
+* ingress-nginx is unlikely to remove its existing functionality; traefik is less predictable.
 
 # Terraform
 

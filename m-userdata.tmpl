@@ -24,6 +24,7 @@ sudo chmod 750 ~root/.kube
 # Basic install of k3s.
 curl -sfL https://get.k3s.io | sh -s - server \
   --datastore-endpoint="mysql://admin:${pwd}@tcp(${host}:3306)/k3s" \
+  --disable traefik \
   --token ${token}
 
 sudo snap install helm --classic
@@ -70,6 +71,16 @@ EOF
 [ ${inst-id} -eq 0 -a "${kubeconfig-ssm}" = "true" ] && {
   aws ssm put-parameter --name ${prefix}-kubeconfig --value "`cat ~root/.kube/config`" --type String
 }
+
+# nginx-ingress install. To replace traefik which broke (was deployed as a daemonset but overtime changed to deployment).
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+# Force ingress-nginx install as a daemonset
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  -n ingress-nginx \
+  --create-namespace \
+  --set kind=DaemonSet 
 
 # finally how does k3s look?
 sudo kubectl get nodes
