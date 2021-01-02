@@ -23,7 +23,7 @@ Adapted from my [rancher install on aws via terraform](https://github.com/spicys
 
 # Single load balancer for kubernetes api and ingress
 
-K3s by default uses the [treafik ingress controller](https://docs.traefik.io/providers/kubernetes-ingress/). There are a number of ingress controllers available for kubernetes (k8s) besides treafik; nginx (ingress-nginx and nginx-ingress), haproxy, etc. They all work the same and use the k8s ingress resource type. Ingress controllers work by inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 cloud load balancer even if you are hosting multiple dns names/deployments in k8s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to cost and complexity.
+K3s by default uses the [treafik ingress controller](https://docs.traefik.io/providers/kubernetes-ingress/). There are a number of ingress controllers available for kubernetes (k8s) besides treafik; nginx (ingress-nginx and nginx-ingress), haproxy, etc. They all work the same and use the k8s ingress resource type. Ingress controllers work by inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 (TCP) cloud load balancer even if you are hosting multiple dns names/deployments in k8s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to cost and complexity.
 
 The k3s master nodes are designed to run pod workloads, similar to worker nodes. Thus the load balancer directs HTTP and HTTPS traffic to all the masters and workers.
 
@@ -34,6 +34,10 @@ Originally when I created this deployment (June 2020), traefik worked perfectly 
 * traefik v1.7 shipped with k3s has a messy daemonset deployment (can't be deployed via a helm chart, although can now be done via traefik 2.x, but this functionality in the helm chart has just been released and traefik 2.x is not general availability/stable at this time).
 * ingress-nginx has a more stable feature set while traefik feature set is in flux and I can't guarentee it will change greatly (it has already broke my deployment once so why should I stick with it?)
 * ingress-nginx is unlikely to remove its existing functionality; traefik is less predictable.
+
+Its worth discussing Ingress controllers in general (including ingress-nginx):
+* Ingress controllers are meant to manage the whole ingress sequence; don't attempt to mix functionality of the cloud load balancer with the ingress controller! Typically examples include installing TLS certificates on the load balancer, which leads to all sorts of issues; the ingress controller is intended to manage TLS for you!
+* As mentioned in the first point: ingress manages TLS for you. There is some complexity here of managing certificate authority generated certs (eg Godaddy, Digicert, etc). To simplify this, you might want to install cert-manager, and then let cert-manager manage certs via Letsencrypt, etc. Letsencypt certs are free and cert-manager can manage the renewals of these. 
 
 # Terraform
 
