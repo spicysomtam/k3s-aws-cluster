@@ -23,7 +23,7 @@ Adapted from my [rancher install on aws via terraform](https://github.com/spicys
 
 # Single load balancer for kubernetes api and ingress
 
-K3s by default uses the [treafik ingress controller](https://docs.traefik.io/providers/kubernetes-ingress/). There are a number of ingress controllers available for kubernetes (k8s) besides treafik; nginx (ingress-nginx and nginx-ingress), haproxy, etc. They all work the same and use the k8s ingress resource type. Ingress controllers work by inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 (TCP) cloud load balancer even if you are hosting multiple dns names/deployments in k8s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to cost and complexity.
+K3s by default uses the [traefik ingress controller](https://docs.traefik.io/providers/kubernetes-ingress/). There are a number of ingress controllers available for kubernetes (k8s) besides traefik; nginx (ingress-nginx and nginx-ingress), haproxy, etc. They all work the same and use the k8s ingress resource type. Ingress controllers work by inspecting the target dns name, and then forwarding this to the correct k8s service. Thus you only need one Layer 4 (TCP) cloud load balancer even if you are hosting multiple dns names/deployments in k8s. Also the single load balancer handles the k8s api. All of this is attractive as implementing multiple cloud load balancers adds to cost and complexity.
 
 The k3s master nodes are designed to run pod workloads, similar to worker nodes. Thus the load balancer directs HTTP and HTTPS traffic to all the masters and workers.
 
