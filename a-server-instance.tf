@@ -6,6 +6,7 @@ resource "aws_launch_template" "agent" {
     name = aws_iam_instance_profile.k3s.name
   }
 
+  vpc_security_group_ids = concat([aws_security_group.agent.id], var.m_additional_sg)
   key_name = var.k3s_key_pair
 
   user_data = base64encode(templatefile("${path.module}/a-userdata.tmpl", { 
