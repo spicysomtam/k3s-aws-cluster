@@ -73,11 +73,11 @@ EOF
 }
 
 # nginx-ingress install. To replace traefik which broke (was deployed as a daemonset but overtime changed to deployment).
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
+sudo helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+sudo helm repo update
 
 # Force ingress-nginx install as a daemonset
-helm install ingress-nginx ingress-nginx/ingress-nginx \
+sudo helm install ingress-nginx ingress-nginx/ingress-nginx \
   -n ingress-nginx \
   --create-namespace \
   --set kind=DaemonSet 
