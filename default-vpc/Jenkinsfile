@@ -14,6 +14,7 @@ pipeline {
     booleanParam(name: 'create_bastion', defaultValue : true, description: "Whether to create the bastion server.")
     string(name: 'credential', defaultValue : 'jenkins', description: "Jenkins credential that provides the AWS access key and secret.")
     string(name: 'region', defaultValue : 'eu-west-1', description: "AWS region.")
+    choice(name: 'tf_version', choices: '0.15\n1.0', description: 'Terrform tools version to use.')
   }
 
   options {
@@ -21,6 +22,10 @@ pipeline {
     timeout(time: 1, unit: 'HOURS')
     withAWS(credentials: params.credential, region: params.region)
     ansiColor('xterm')
+  }
+
+  tools {
+    terraform params.tf_version
   }
 
   agent { label 'master' }

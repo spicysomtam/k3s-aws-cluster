@@ -163,6 +163,13 @@ I have included an [example](no-api-on-ext-lb-plus-int-lb-for-api/main.tf).
 
 I have included a sample `Jenkinsfile` pipeline in the `default-vpc` example. You could adapt this to the other examples or your requirements. Its a minimum config deploy; I mean it has the bare minimum number of parameters required to do a deploy; you may wish to expand this if you need to specify other parameters.
 
+## Terrform tool
+
+As time passes, `terraform` versions change. To make this easier to manage, I have implement a `tools` section in the pipeline to allow you to manage this. Notes on this:
+* Install the Jenkins `terraform` plugin and restart Jenkins.
+* Enter `Manage Jenkins->Global Tool Configuration` and add one or more terraform installations. I name them on the `<major>.<minor>` version (eg `0.15`); you can adjust the bug fix version over time as required (eg `<major>.<minor>.<bugfix>`).
+* Add a choice parameter to your Jenkins pipeline in the Jenkins web gui, and call it `tf_version`. Ensure it has the names of the versions you defined in the last step.
+
 # k3os
 
 I could have used [k3os](https://github.com/rancher/k3os). However this repo predates my discovering k3os, and then I would have the issue of building a custom ami image, and then redoing all the master/worker integration. Thus I did not see any great benefit in switching k3os and decided to stay with k3s, which probably has a bigger user base than k3os.
