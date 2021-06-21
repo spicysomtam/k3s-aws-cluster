@@ -8,6 +8,7 @@ output "rds_username" {
 
 output "mysql_password" {
   value = module.k3s.mysql_password
+  sensitive = true
 }
 
 output "master_private_ips" {

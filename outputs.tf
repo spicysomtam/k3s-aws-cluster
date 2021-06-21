@@ -32,6 +32,7 @@ output "rds_username" {
 
 output "mysql_password" {
   value = random_password.mysql_password.result
+  sensitive = true
 }
 
 output "deployment_prefix" {

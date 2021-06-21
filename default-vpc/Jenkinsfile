@@ -6,7 +6,7 @@ pipeline {
    parameters {
     choice(name: 'action', choices: 'create\ndestroy', description: 'Create/update or destroy stack.')
     string(name: 'prefix', defaultValue : 'k3', description: "Prefix for AWS resources so you can create multiple stacks.")
-    string(name: 'ec2_key_pair', defaultValue : 'spicysomtam-aws4', description: "k8s node ssh keypair.")
+    string(name: 'ec2_key_pair', defaultValue : 'spicysomtam-aws7', description: "k8s node ssh keypair.")
     string(name: 'm_num_servers', defaultValue : '2', description: "Number of master nodes to create (should be > 1).")
     string(name: 'a_num_servers', defaultValue : '2', description: "Number of agent nodes to create.")
     string(name: 'a_max_servers', defaultValue : '10', description: "Max number of agent nodes in the auto scaling group.")
