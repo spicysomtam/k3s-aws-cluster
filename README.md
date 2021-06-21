@@ -167,8 +167,8 @@ I have included a sample `Jenkinsfile` pipeline in the `default-vpc` example. Yo
 
 As time passes, `terraform` versions change. To make this easier to manage, I have implement a `tools` section in the pipeline to allow you to manage this. Notes on this:
 * Install the Jenkins `terraform` plugin and restart Jenkins.
-* Enter `Manage Jenkins->Global Tool Configuration` and add one or more terraform installations. I name them on the `<major>.<minor>` version (eg `0.15`); you can adjust the bug fix version over time as required (eg `<major>.<minor>.<bugfix>`) since they are just bug fixes and should not have functionality changes.
-* You can see there is now a choice parameter called `tf_version` which allows you to set the default and one or more versions, based on the names you defined in the previous section. With the versions set, they need to work with the terraform code, so take care setting what versions you define. It might be safer just to define one version choice, and just update it over time.
+* Enter `Manage Jenkins->Global Tool Configuration` and add one or more terraform installations. I name them on the `<major>.<minor>` version (eg `0.15`); you can adjust the bug fix version over time as required (eg `<major>.<minor>.<bugfix>`) since they are just bug fixes and should have no functionality changes.
+* You can see there is now a choice parameter called `tf_version` which allows you to set the default and one or more versions, based on the names you defined for the Jenkins terraform tools. With the versions set, they need to work with the terraform code, so take care setting what versions you define. It might be safer just to define one version choice, and just update it over time.
 * Also be aware that you should use the same terraform version when running a `create` and then the subsequent `destroy`. If you update the terraform version on a deploy that is active, you might try running the create on top of the existing create to update any changes to the terraform state.
 
 # k3os
