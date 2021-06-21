@@ -59,6 +59,7 @@ pipeline {
 
             sh """
               cd ${tf_path}
+              terraform -version # confirm what version we are running
               terraform init -upgrade
               terraform workspace new ${params.prefix} || true
               terraform workspace select ${params.prefix}
@@ -153,7 +154,8 @@ pipeline {
 
             sh """
               cd ${tf_path}
-              terraform init
+              terraform -version # confirm what version we are running
+              terraform init -upgrade
               terraform workspace select ${params.prefix}
               terraform destroy -auto-approve
 
