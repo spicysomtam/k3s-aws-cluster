@@ -115,7 +115,7 @@ pipeline {
             } else {
               lb = sh(returnStdout: true, script: """#!/bin/bash +x
                 cd ${tf_path}
-                terraform output lb_dns_name
+                terraform output -raw lb_dns_name
               """).trim()
 
               kc=kc.replace('127.0.0.1',lb).replaceAll('default',params.prefix)
