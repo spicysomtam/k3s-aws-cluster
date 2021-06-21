@@ -165,7 +165,7 @@ I have included a sample `Jenkinsfile` pipeline in the `default-vpc` example. Yo
 
 ## Terrform tools
 
-As time passes, `terraform` versions change. To make this easier to manage, I have implement a `tools` section in the pipeline to allow you to manage this. Notes on this:
+As time passes, `terraform` versions change. To make this easier to manage, I have implement a `tools` section in the pipeline to allow you to manage this. Setup notes for this:
 * Install the Jenkins `terraform` plugin and restart Jenkins.
 * Navigate to Jenkins `Manage Jenkins->Global Tool Configuration` and add one or more Terraform installations. I name them based on the `<major>.<minor>` version (eg `0.15`). You can adjust the bug fix version actually installed for a given name over time as required (eg `<major>.<minor>.<bugfix>`) since they are just bug fixes and should have no functionality changes.
 * You can see there is now a Jenkins choice parameter called `tf_version` which allows you to set the default and one or more versions, based on the names you defined for the Jenkins Terraform tools. With the versions you set, they need to work with the terraform code, so take care setting the versions. It might be safer just to define one version, and update it over time.
