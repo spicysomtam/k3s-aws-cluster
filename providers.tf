@@ -2,10 +2,21 @@
 # Provider Configuration
 #
 
+terraform {
+  required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 2.3"
+    }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 2.69"
+    }
+  }
+}
+
 provider "random" {
-  version     = "~> 2.3"
 }
 
 provider "aws" {
-  version     = "~> 2.69"
 }
