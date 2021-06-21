@@ -6,12 +6,6 @@ resource "aws_lb_target_group" "https" {
   target_type = "instance"
   vpc_id = data.aws_vpc.var.id
 
-  # oddily we have to specify stickiness and then disable it to allow protocol = "TCP"!
-  stickiness {
-      type = "lb_cookie"
-      enabled = false
-  }
-
   tags = var.tags
 }
 
