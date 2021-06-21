@@ -59,7 +59,7 @@ pipeline {
 
             sh """
               cd ${tf_path}
-              terraform init
+              terraform init -upgrade
               terraform workspace new ${params.prefix} || true
               terraform workspace select ${params.prefix}
               terraform plan \
