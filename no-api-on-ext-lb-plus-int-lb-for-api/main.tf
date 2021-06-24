@@ -10,7 +10,7 @@ resource "aws_eip" "nat" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "2.33.0"
+  version = "3.1.0"
 
   name = var.prefix
   cidr = "${var.vpc_cidr_prefix}.0.0/16"
@@ -52,11 +52,11 @@ module "k3s" {
   a_max_servers = var.a_max_servers
 
   # ssh keypair for instances
-  k3s_key_pair = "spicysomtam-aws4"
+  k3s_key_pair = "spicysomtam-aws7"
 
   # enable bastion so we can get to hosts in priv subnets
   bastion_enabled = true
-  b_key_pair = "spicysomtam-aws4"
+  b_key_pair = "spicysomtam-aws7"
 
   # no api on ext lb
   api_on_lb = false

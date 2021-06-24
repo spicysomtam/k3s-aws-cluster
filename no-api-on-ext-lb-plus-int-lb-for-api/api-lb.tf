@@ -23,12 +23,6 @@ resource "aws_lb_target_group" "api_k8s" {
   protocol = "TCP"
   target_type = "instance"
   vpc_id = module.vpc.vpc_id
-
-  # oddily we have to specify stickiness and then disable it to allow protocol = "TCP"!
-  stickiness {
-      type = "lb_cookie"
-      enabled = false
-  }
 }
 
 resource "aws_lb_target_group_attachment" "api_k8s_m" {

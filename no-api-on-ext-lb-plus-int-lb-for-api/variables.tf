@@ -21,6 +21,11 @@ variable "a_num_servers" {
   default = "2"
 }
 
+variable "a_max_servers" {
+  description = "Max number of agent/worker server instances to deploy."
+  default = "10"
+}
+
 variable "api_lb_internal" {
   description = "Whether api lb is internal."
   default = true
