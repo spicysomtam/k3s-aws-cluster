@@ -19,7 +19,7 @@ resource "aws_db_instance" "k3s" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
-  engine_version       = "5.7.22"
+  engine_version       = "5.7.38"
   db_subnet_group_name = aws_db_subnet_group.k3s.id
   instance_class       = var.rds_inst_type
   name                 = "${var.prefix}k3s"
