@@ -6,6 +6,11 @@ resource "aws_instance" "bastion" {
   subnet_id = var.lb_subnet_ids[1]
   vpc_security_group_ids = [aws_security_group.bastion[0].id]
 
+  # encrypt block device to enable hibernation
+  root_block_device {
+    encrypted = true
+  }
+  
   # Ignore changes on a new ami shipped by aws
   lifecycle {
     ignore_changes = [
